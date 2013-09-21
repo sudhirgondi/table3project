@@ -2,7 +2,8 @@
 
 <h1>Update user #<%= @user['id'] %></h1>
 
-<p id="notice"><%= @user.errors.full_messages.first if @user.errors.any? %></p>
+<p class="error"><%= @user.errors.full_messages.first if @user.errors.any? %></p>
+<p class="notice"><%= flash[:notice] %></p>
 
 <%= simple_form_for @user do |f| %>
 	<%= f.input :first_name %>

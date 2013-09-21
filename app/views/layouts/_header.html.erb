@@ -11,7 +11,13 @@
             <div class="nav-collapse">
                 
                 <ul class="nav">
-                    <!-- <li><a href="/blogs/">Home</a></li> -->
+                    <% if signed_in? %>
+                        <li><a href="/">My Interests</a></li>
+                        <li><a href="/">My Events</a></li>
+                    <% else %>
+                        <li><a href="/">About</a></li>
+                        <li><a href="/">Contact Us</a></li>
+                    <% end %>
                 </ul>
 
                 <ul class="nav pull-right">

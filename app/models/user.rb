@@ -1,12 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :password
 
-  has_many :messages
-  has_many :posts
-  has_many :owners,:dependent=>:destroy
-  has_many :blogs, through: :owners
-
-
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 
   validates :first_name, :last_name,		:presence 	=> true,
@@ -20,7 +14,8 @@ class User < ActiveRecord::Base
   					:length			          => { :within => 6..40 }
 
   validates :password_confirmation,  :presence => true
-  validates :zip_code,  :presence => true
+  validates :zip_code,  :presence => true, :numericality => { :greater_than_or_equal_to => 10000, :less_than_or_equal_to => 99999 }
+
 
   before_save :encrypt_password
 
