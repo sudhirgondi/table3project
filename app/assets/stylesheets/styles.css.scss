@@ -1,0 +1,19 @@
+$navbarBackgroundHighlight: white;
+$navbarBackground: white;
+
+@import 'bootstrap';
+@import 'bootstrap-responsive';
+
+body { 
+	padding-top: 60px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#notice {
+	color:green;
+}
+
+.error {
+	color:red;
+}
