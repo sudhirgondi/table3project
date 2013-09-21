@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   		render :new
   	else
   		sign_in user
-  		redirect_to users_path
+  		redirect_to user_path(user)
       # render text: user
   	end
 
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	sign_out
-    redirect_to users_path, notice: "You are now logged out."
+    redirect_to interests_path, notice: "You are now logged out."
   end
 
 end
