@@ -1,2 +1,122 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Events Dashboard</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+	<style>
+	h1{
+		padding-left: 350px;
+		font-style: bold;
+	}
+	.my_row{
+		background-color: #99FFCC
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="top_nav">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Profile</a></li>
+				<li class="active">Events Dashboard</li>
+				<li><a href="#">My Events</a></li>
+				<li><a href="#">What's going on</a></li>
+				<li><a href="#">Log out</a></li>
+			</ol>
+		</div>
+		<h1 id="main_title">Events Dashboard</h1>
+		<div id="content">
+			<div class="my_events">
+				<h3>My Events</h3>
+				<table class="table table-striped">
+				<tr class="my_row">
+					<th>Event</th>
+					<th>Event Name</th>
+					<th>Date and time</th>
+					<th>Event Address</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><a href="#">Best from the west<a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				</table>
+			</div>
+			<div class="events_joined">
+				<h3>Events I've joined</h3>
+				<table class="table table-striped">
+				<tr>
+					<th>Event</th>
+					<th>Event Name</th>
+					<th>Date and time</th>
+					<th>Event Address</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				</table>
+			</div>
+			<div class="invited_events">
+				<h3>Events I've been invited</h3>
+				<table class="table table-striped">
+				<tr>
+					<th>Event</th>
+					<th>Event Name</th>
+					<th>Date and time</th>
+					<th>Event Address</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><a href="#">Best from the west</a></td>
+					<td>Sunday March 15, 2011 @ 3:00p.m.</td>
+					<td>840 Washington Park, Sunnyvale,CA 94043</td>
+				</tr>
+				</table>
+			</div>
+		</div>
+		<p><a class="btn btn-success">Create your own event</a></p>
+	</div>
+</body>
+</html>
