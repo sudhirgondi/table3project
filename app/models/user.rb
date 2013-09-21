@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :zip_code,  :presence => true, :numericality => { :greater_than_or_equal_to => 10000, :less_than_or_equal_to => 99999, :message => "must be valid." }
 
 
-  before_save :encrypt_password, :upcase_first_letter
+  before_save :encrypt_password
 
   def has_password?(submitted_password)
   	encrypted_password == encrypt(submitted_password)
@@ -35,15 +35,6 @@ class User < ActiveRecord::Base
 
 
   private
-    def upcase_first_letter
-      f = self.first_name
-      f[0] = f.first.upcase!
-      f.to_s
-
-      l = self.last_name
-      l[0] = l.first.upcase!
-      l.to_s
-    end
 
   	def encrypt_password
   		# generate a unique salt if it's a new user
