@@ -1,2 +1,54 @@
-<h1>Interests#show</h1>
-<p>Find me in app/views/interests/show.html.erb</p>
+<div id="wrapper">
+  
+  <h1><%= interest.name %> event in your area</h1>
+  <div class=span12>
+    <a id="interest_map" href="interest.map"></a>
+  </div>
+ 
+  <div class="span4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Activity Meter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @interest.users do |iuser| %>
+          <tr>
+            <td><%= iuser.first_name %></td>
+            <td><%= iuser.last_name %></td>
+            <td></td>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="span8">
+    <%= link_to 'Create your event', new_interest_event_path(interest), :class=> "btn btn-primary pull-right" %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Event Date</th>
+          <th>Event Starts at</th>
+          <th>Event Ends at</th>
+          <th>Event Location Name</th>
+          <th>Event Location Address</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @interest.events do |ievent| %>
+          <tr>
+            <td><a href="<%= ievent.name %>"</td></a>
+            <td><%= ievent.date %></td>
+            <td><%= ievent.starts_at %></td>
+            <td><%= ievent.ends_at %></td>
+            <td><%= ievent.location_name %></td>
+            <td><%= ievent.location_address %></td>
+            <td></td>
+      </tbody>
+    </table>
+  </div>
+</div> 
