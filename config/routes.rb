@@ -1,7 +1,10 @@
 Table3project::Application.routes.draw do
   
+  resources :events do
+    resources :posts
+  end
+
   resources :interests
-  resources :events
   resources :users
   resources :sessions,  :only => [:new, :create, :destroy]
 
