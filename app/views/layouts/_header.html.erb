@@ -22,7 +22,7 @@
 
                 <ul class="nav pull-right">
                     <% if signed_in? %>
-                        <li><a href="/users/<%= current_user.id %>/edit">Profile</a></li>
+                        <li><a href="/users/<%= current_user.id %>/edit">Profile Edit</a></li>
                         <li><a href="/signout">Logout</a></li>
                     <% else %>
                         <li><a href="/signup">Sign Up</a></li>

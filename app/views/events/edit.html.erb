@@ -1,2 +1,16 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<h1>Update Event</h1>
+
+<%= simple_form_for(@event) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :location %>
+  <%= f.input :address %>
+  <%= f.input :city %>
+  <%= f.input :state %>
+  <%= f.input :zip_code %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :description, :as => :text, :as => :text, :input_html => { class: 'input-large', :rows => 6 } %>
+  <%= f.button :submit, :class => 'btn btn-large btn-success' %>
+<% end %>
