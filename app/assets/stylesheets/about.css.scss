@@ -27,8 +27,8 @@ body{
 }
 
 #home { 
-	background: url(http://www.pulsarmedia.eu/data/media/864/Beach%20Blurred%20Wallpaper%201920X1200.jpg) 50% 0 no-repeat fixed; 
-	height: 1000px;  
+	background: url(http://www.mrwallpaper.com/wallpapers/couple-hiking-valley-1920x1080.jpg) 50% 0 no-repeat fixed; 
+	height: 900px;  
 	margin: 0 auto; 
     width: 100%; 
     max-width: 1920px; 
@@ -37,8 +37,8 @@ body{
     border-bottom: 1px solid black;
 }
 #about { 
-	background: url(http://www.mrwallpaper.com/wallpapers/paris-eiffel-tower-blurred-1920x1080.jpg) 50% 0 no-repeat fixed; 
-	height: 1000px;
+	background: url(http://www.ewallpapers.eu/w_show/let--s-party-1920-1200-6774.jpg) 50% 0 no-repeat fixed; 
+	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
     max-width: 1920px; 
@@ -47,8 +47,8 @@ body{
     border-bottom: 1px solid black;
 }
 #camel { 
-	background: url(http://wallpapersfor.me/wp-content/uploads/2012/02/city-hazy-blurred-unsharp-night-rain-1920x1080.jpg) 50% 0 no-repeat fixed; 
-	height: 1000px;
+	background: url(http://images5.alphacoders.com/324/324011.jpg) 50% 0 no-repeat fixed; 
+	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
     max-width: 1920px; 
@@ -57,9 +57,19 @@ body{
     border-bottom: 1px solid black;
 }
 #flower { 
-	background: url(http://www.desktopas.com/files/2012/11/17/cityscapes-streets-bicycles-blur-1920x1200.jpg) 50% 0 no-repeat fixed; 
-	height: 1000px;
+	background: url(http://www.crazywallpapers.org/wp-content/uploads/wallpapers/HD/Giants-Baseball-Arena-Desktop-Wallpaper.jpg) 50% 0 no-repeat fixed; 
+	height: 900px;
 	margin: 0 auto; 
+    width: 100%; 
+    max-width: 1920px; 
+    position: relative; 
+    /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
+    border-bottom: 1px solid black;
+}
+#green { 
+  background: url(http://www.wallsave.com/wallpapers/1920x1080/sports/244924/sports-hd-244924.jpg) 50% 0 no-repeat fixed; 
+  height: 900px;
+  margin: 0 auto; 
     width: 100%; 
     max-width: 1920px; 
     position: relative; 
@@ -67,8 +77,8 @@ body{
     border-bottom: 1px solid black;
 }
 #jack { 
-	background: url(http://p1.pichost.me/i/11/1338547.jpg) 50% 0 no-repeat fixed; 
-	height: 1000px;
+	background: url(http://images.alphacoders.com/433/433876.jpg) 50% 0 no-repeat fixed; 
+	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
     max-width: 1920px; 
@@ -81,15 +91,17 @@ body{
 
 
 
-#home article { background: url("../images/about/intro.png") no-repeat scroll center top transparent; height: 420px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#home article { background: url("../images/about/intro.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#about article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 420px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#about article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#camel article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 420px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#camel article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#flower article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 420px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#flower article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#jack article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 420px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#green article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+
+#jack article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
 
 
