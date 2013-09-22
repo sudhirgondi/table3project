@@ -1,8 +1,17 @@
 <h1>Your event: <%= @event['name'] %></h1>
 
 <div class="span6">
-		
-
+	<strong>Event Name: </strong><%= @event.name %>	</br>
+	<strong>Event Location: </strong><%= @event.location %></br>	
+	<strong>Event Address: </strong><%= @event.address %></br>	
+	<strong>City: </strong><%= @event.city %></br>	
+	<strong>State: </strong><%= @event.state %></br>	
+	<strong>Zip Code: </strong><%= @event.zip_code %></br>
+	<strong>Start Date: </strong><%= @event.start_date %></br>	
+	<strong>End Date: </strong><%= @event.end_date %></br>	
+	<strong>Start Time: </strong><%= @event.start_time %></br>	
+	<strong>End Time: </strong><%= @event.end_time %></br>	
+	<strong>Description: </strong><%= @event.description %></br>	
 </div>
 
 <div class="span6">
@@ -24,7 +33,7 @@
 	<h2>Comments posted by users</h2>
 	<% @posts.each do |post| %>
 		<% if !post.content.nil? %>
-			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.user.first_name %>: </small></i></p>
+			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.user.first_name %> <%= post.user.last_name %>: </small></i></p>
 			<p id="comment"><%= post.content %></p>
 		<% end %>
 	<% end %>
