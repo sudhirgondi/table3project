@@ -1,7 +1,7 @@
 <h1>Your event: <%= @event['name'] %></h1>
 
 <div class="span6">
-	
+		
 
 </div>
 
@@ -16,18 +16,15 @@
 <div id="wall" class="span12">
 	<h2>Post a comment:</h2>
 
-	<!-- The below is incorrect and needs to be fixed once nested resource created -->
-	<!-- Change :description to :content !!!!! -->
-	<%= simple_form_for(@event) do |f| %>
-	  <%= f.input :description, :as => :text, :input_html => { class: 'input-large', :rows => 6 } %>
-	  <%= f.button :submit, class: "btn btn-success" %>
+	<%= simple_form_for([@event, @post]) do |p| %>
+	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', :rows => 6 } %>
+	  <%= p.button :submit, class: "btn btn-success" %>
 	<% end %>
 
-
+	<h2>Comments posted by users</h2>
 	<% @posts.each do |post| %>
 		<% if !post.content.nil? %>
-			<h2>Comments posted by users</h2>
-			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.author %>: </small></i></p>
+			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.user.first_name %>: </small></i></p>
 			<p id="comment"><%= post.content %></p>
 		<% end %>
 	<% end %>

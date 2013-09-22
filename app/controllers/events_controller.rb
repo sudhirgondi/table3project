@@ -18,8 +18,8 @@ class EventsController < ApplicationController
 
   def show
     set_event
-    @post = Post.new
-    @posts = Post.all
+    @post = @event.posts.new
+    @posts = @event.posts.order('posts.created_at DESC')
   end
 
   def edit
