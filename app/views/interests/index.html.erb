@@ -1,2 +1,90 @@
-<h1>Interests#index</h1>
-<p>Find me in app/views/interests/index.html.erb</p>
+
+		<div class="clear" id="show_result">
+		</div>
+		<form class="left" id="myform" action="process.php" method="post">
+		<input type="hidden" name="action" value="login" />
+		</form>
+	<div id="header">
+		<h1>FAVORITES</h1>
+		<div class="interest">
+			<img src="../../assets/images/croquet.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Croquet', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'remove favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+	</div>
+	<div class="clear">
+		<div class="interest">
+			<img src="/assets/images/checkers.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Checkers', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/pingpong.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Ping Pong', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/football.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Football', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/hiking.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Hiking', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/swimming.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Swimming', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+	</div>
+	<div class="clear">
+		<div class="interest">
+			<img src="assets/images/croquet.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Croquet', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/volleyball.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Volleyball', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/foosball.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Foosball', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/blackjack.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'BlackJack', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+		<div class="interest">
+			<img src="assets/images/soccer.jpg" class="circle" alt="" />
+			<p>
+				<%= link_to 'Soccer', interest_path(@interest), class: 'title_link' %>
+				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
+			</p>
+		</div>
+	</div>

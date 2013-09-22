@@ -1,5 +1,5 @@
 Table3project::Application.routes.draw do
-  
+
   resources :events do
     resources :posts
   end
@@ -8,9 +8,10 @@ Table3project::Application.routes.draw do
   resources :users
   resources :sessions,  :only => [:new, :create, :destroy]
 
-  get "/signup",  :to => 'users#new'
-  get "/signin",  :to => 'sessions#new'
-  get "/signout", :to => 'sessions#destroy'
+  get "/about" ,    :to => 'about#index'
+  get "/signup",    :to => 'users#new'
+  get "/signin",    :to => 'sessions#new'
+  get "/signout",   :to => 'sessions#destroy'
 
   root :to => 'interests#index'
   
