@@ -1,34 +1,34 @@
-<div id="wrapper">
+<h1>Your event: <%= @event['name'] %></h1>
 
-	<div class="span6">
-		
+<div class="span6">
+	
 
-	</div>
+</div>
 
-	<div class="span6">
-		<a id="event_map" href="event.map"></a>
-	</div>
+<div class="span6">
+	<a id="event_map" href="event.map"></a>
+</div>
 
-	<div id="invitations" class="span12">
-		
-	</div>
+<div id="invitations" class="span12">
+	
+</div>
 
-	<div id="wall" class="span12">
-		<h2>Post a comment:</h2>
+<div id="wall" class="span12">
+	<h2>Post a comment:</h2>
 
-		<%= simple_form_for [@event,@post] do |p| %>
-		  <%= p.input :content %>:
-		  <%= p.button :submit, class: "btn btn-success" %>
+	<!-- The below is incorrect and needs to be fixed once nested resource created -->
+	<!-- Change :description to :content !!!!! -->
+	<%= simple_form_for(@event) do |f| %>
+	  <%= f.input :description, :as => :text, :input_html => { class: 'input-large', :rows => 6 } %>
+	  <%= f.button :submit, class: "btn btn-success" %>
+	<% end %>
+
+
+	<% @posts.each do |post| %>
+		<% if !post.content.nil? %>
+			<h2>Comments posted by users</h2>
+			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.author %>: </small></i></p>
+			<p id="comment"><%= post.content %></p>
 		<% end %>
-
-
-		<h2>Comments posted by users</h2>
-
-		<% @posts.each do |post| %>
-			<% if !post.content.nil? %>
-				<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.author %>: </small></i></p>
-				<p id="comment"><%= post.content %></p>
-			<% end %>
-		<% end %>
-	</div>
+	<% end %>
 </div>

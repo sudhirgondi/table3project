@@ -18,6 +18,8 @@ class EventsController < ApplicationController
 
   def show
     set_event
+    @post = Post.new
+    @posts = Post.all
   end
 
   def edit
