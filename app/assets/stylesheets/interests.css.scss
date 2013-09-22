@@ -1,3 +1,46 @@
-// Place all the styles related to the Interests controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#header {
+	text-align: center;
+	border: 2px solid black;
+	height: 300px;
+	width: 1100px;
+	
+}
+
+	#header h1 {
+		margin: 0px;
+		padding: 0px;
+	}
+
+.circle {
+	border-radius: 50%;
+	margin: 2px;
+	width: 200px;
+	height: 200px;
+	border: 2px solid black;
+}
+
+.interest {
+	float: left;
+	text-align: center;
+	font-size: 28px;
+	line-height: 0.5;
+	margin-top: 15px;
+}
+
+	.interest  p {
+		margin: 10px;
+		padding: 0px;
+	}
+
+	.favorite_link {
+		margin: 5px;
+		font-size: 18px;
+	}
+/*
+	.title_link {
+		font-size: 18px;
+	}
+*/
+.clear {
+	clear: both;
+}
