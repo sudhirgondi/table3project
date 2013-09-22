@@ -9,6 +9,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.owner_user_id = current_user.id
     if @event.save 
       redirect_to event_path(@event)
     else
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
 
   def show
     set_event
+    @owner = User.find(@event.owner_user_id)
     @post = @event.posts.new
     @posts = @event.posts.order('posts.created_at DESC')
   end

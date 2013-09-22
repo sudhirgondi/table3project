@@ -1,21 +1,39 @@
-<h1>Your event: <%= @event['name'] %></h1>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $("address").each(function(){                         
+	    var embed ="<iframe width='425' height='300' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
+	        $(this).html(embed);                     
+	   });
+	});
+</script>
+<h2><%= @event['name'] %></h2>
+</br>
 <div class="span6">
-	<strong>Event Name: </strong><%= @event.name %>	</br>
-	<strong>Event Location: </strong><%= @event.location %></br>	
-	<strong>Event Address: </strong><%= @event.address %></br>	
-	<strong>City: </strong><%= @event.city %></br>	
-	<strong>State: </strong><%= @event.state %></br>	
-	<strong>Zip Code: </strong><%= @event.zip_code %></br>
-	<strong>Start Date: </strong><%= @event.start_date %></br>	
-	<strong>End Date: </strong><%= @event.end_date %></br>	
-	<strong>Start Time: </strong><%= @event.start_time %></br>	
-	<strong>End Time: </strong><%= @event.end_time %></br>	
-	<strong>Description: </strong><%= @event.description %></br>	
+
+	<p><strong>Created by: </strong><i><%= @owner.first_name%> on <%=@event.created_at.strftime('%A %B %d, %Y %H:%M %p')%></i></p>
+	<strong>Description: </strong><%= @event.description %></br></br>
+	<strong>Start Date: </strong><%= @event.start_date.strftime('%A %B %d, %Y') %></br>		
+	<strong>Start Time: </strong><%= @event.start_time.strftime('%H:%M %p') %></br>	
+	<strong>End Date: </strong><%= @event.end_date.strftime('%A %B %d, %Y') %></br>
+	<strong>End Time: </strong><%= @event.end_time.strftime('%H:%M %p') %></br>
+	<h4>Location:</h4>
+	<strong><%= @event.location %></strong></br>	
+	<%= @event.address %></br>	
+	<%= @event.city %>, 	
+	<%= @event.state %> 
+	<%= @event.zip_code %></br>
+	<%= @event.phone_number %>	
 </div>
 
-<div class="span6">
-	<a id="event_map" href="event.map"></a>
+<div class="span5">
+	<address>
+		<strong><%= @event.location %></strong></br>	
+		<%= @event.address %></br>	
+		<%= @event.city %>, 	
+		<%= @event.state %> 
+		<%= @event.zip_code %></br>
+		<%= @event.phone_number %>
+	</address>
 </div>
 
 <div id="invitations" class="span12">
@@ -23,17 +41,17 @@
 </div>
 
 <div id="wall" class="span12">
-	<h2>Post a comment:</h2>
+	<h4>Post a comment:</h4>
 
 	<%= simple_form_for([@event, @post]) do |p| %>
-	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', :rows => 6 } %>
+	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', :rows => 2 } %>
 	  <%= p.button :submit, class: "btn btn-success" %>
 	<% end %>
 
-	<h2>Comments posted by users</h2>
+	<h4>Comments posted by users</h4>
 	<% @posts.each do |post| %>
 		<% if !post.content.nil? %>
-			<p id="post_heading"><i>Comment posted on <%= post.created_at %> by <small><%= post.user.first_name %> <%= post.user.last_name %>: </small></i></p>
+			<p id="post_heading"><i>Comment posted on <%= post.created_at.strftime('%A %B %d, %Y %H:%M %p') %> by <small><%= post.user.first_name %> <%= post.user.last_name %>: </small></i></p>
 			<p id="comment"><%= post.content %></p>
 		<% end %>
 	<% end %>
