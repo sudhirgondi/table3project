@@ -2,16 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-/**
- * Parallax Scrolling Tutorial
- * For NetTuts+
- *  
- * Author: Mohiuddin Parekh
- *	http://www.mohi.me
- * 	@mohiuddinparekh   
- */
-
 body{
 	margin:0;
 	padding:0;
@@ -26,8 +16,8 @@ body{
 	border-bottom: 1px solid black;
 }
 
-#home { 
-	background: url(http://www.mrwallpaper.com/wallpapers/couple-hiking-valley-1920x1080.jpg) 50% 0 no-repeat fixed; 
+#hiking { 
+	background: url(about/couplehiking.jpg) 50% 0 no-repeat fixed; 
 	height: 900px;  
 	margin: 0 auto; 
     width: 100%; 
@@ -36,8 +26,8 @@ body{
     /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
     border-bottom: 1px solid black;
 }
-#about { 
-	background: url(http://www.ewallpapers.eu/w_show/let--s-party-1920-1200-6774.jpg) 50% 0 no-repeat fixed; 
+#party { 
+	background: url(about/letsparty.jpg) 50% 0 no-repeat fixed; 
 	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
@@ -46,8 +36,8 @@ body{
     /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
     border-bottom: 1px solid black;
 }
-#camel { 
-	background: url(http://images5.alphacoders.com/324/324011.jpg) 50% 0 no-repeat fixed; 
+#snowboard { 
+	background: url(about/snowboarding.jpg) 50% 0 no-repeat fixed; 
 	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
@@ -56,8 +46,8 @@ body{
     /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
     border-bottom: 1px solid black;
 }
-#flower { 
-	background: url(http://www.crazywallpapers.org/wp-content/uploads/wallpapers/HD/Giants-Baseball-Arena-Desktop-Wallpaper.jpg) 50% 0 no-repeat fixed; 
+#baseball { 
+	background: url(about/attpark.jpg) 50% 0 no-repeat fixed; 
 	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
@@ -66,8 +56,8 @@ body{
     /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
     border-bottom: 1px solid black;
 }
-#green { 
-  background: url(http://www.wallsave.com/wallpapers/1920x1080/sports/244924/sports-hd-244924.jpg) 50% 0 no-repeat fixed; 
+#skydive { 
+  background: url(about/skydiving.jpg) 50% 0 no-repeat fixed; 
   height: 900px;
   margin: 0 auto; 
     width: 100%; 
@@ -76,8 +66,8 @@ body{
     /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
     border-bottom: 1px solid black;
 }
-#jack { 
-	background: url(http://wallpoper.com/images/00/43/74/75/people-jumping-in-the-air_00437475.jpg) 50% 0 no-repeat fixed; 
+#funtime { 
+	background: url(about/havingfun.jpg) 50% 0 no-repeat fixed; 
 	height: 900px;
 	margin: 0 auto; 
     width: 100%; 
@@ -91,43 +81,23 @@ body{
 
 
 
-#home article { background: url("../images/about/intro.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#hiking article { background: url("about/hiking.png") no-repeat scroll center top transparent; height: 500px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#about article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#party article { background: url("about/party.png") no-repeat scroll center top transparent; height: 500px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#camel article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#snowboard article { background: url("about/boarding.png") no-repeat scroll center top transparent; height: 680px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#flower article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#baseball article { background: url("about/baseball.png") no-repeat scroll center top transparent; height: 680px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#green article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+#skydive article { background: url("about/sky.png") no-repeat scroll center top transparent; height: 680px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
-#jack article { background: url("../images/about/parallax.png") no-repeat scroll center top transparent; height: 480px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
-
-
+#funtime article { background: url("about/fun.png") no-repeat scroll center top transparent; height: 680px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
 
 
 
 
 
 
-/**
- * HTML5 ✰ Boilerplate
- *
- * style.css contains a reset, font normalization and some base styles.
- *
- * Credit is left where credit is due.
- * Much inspiration was taken from these projects:
- * - yui.yahooapis.com/2.8.1/build/base/base.css
- * - camendesign.com/design/
- * - praegnanz.de/weblog/htmlcssjs-kickstart
- */
-
-
-/**
- * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
- * v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
- * html5doctor.com/html-5-reset-stylesheet/
- */
 
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
