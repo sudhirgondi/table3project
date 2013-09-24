@@ -6,53 +6,85 @@
 	   });
 	});
 </script>
-<h2><%= @event['name'] %></h2>
-</br>
-<div class="span6">
 
-	<p><strong>Created by: </strong><i><%= @owner.first_name%> on <%=@event.created_at.strftime('%A %B %d, %Y %H:%M %p')%></i></p>
-	<strong>Description: </strong><%= @event.description %></br></br>
-	<strong>Start Date: </strong><%= @event.start_date.strftime('%A %B %d, %Y') %></br>		
-	<strong>Start Time: </strong><%= @event.start_time.strftime('%H:%M %p') %></br>	
-	<strong>End Date: </strong><%= @event.end_date.strftime('%A %B %d, %Y') %></br>
-	<strong>End Time: </strong><%= @event.end_time.strftime('%H:%M %p') %></br>
-	<h4>Location:</h4>
-	<strong><%= @event.location %></strong></br>	
-	<%= @event.address %></br>	
-	<%= @event.city %>, 	
-	<%= @event.state %> 
-	<%= @event.zip_code %></br>
-	<%= @event.phone_number %>	
+<h1><%= @event['name'] %></h1>
+
+<p class="notice"><%= flash[:notice] %></p>
+<p class="error"><%= flash[:error] %></p>
+
+<br>
+
+<div class="row">
+	<div class="span6">
+		<p>
+			<strong>Created by: </strong><%= @owner.first_name%>
+			<br>
+			<strong>Created on: </strong><%=@event.created_at.strftime('%A, %B %d, %Y at %H:%M %p')%>
+			<br>
+			<strong>Description: </strong><%= @event.description %>
+			</br></br>
+
+			<strong>Start Date: </strong><%= @event.start_date.strftime('%A, %B %d, %Y') %>
+			</br>		
+			<strong>Start Time: </strong><%= @event.start_time.strftime('%H:%M %p') %>
+			</br>	
+			</br>
+			<strong>End Date: </strong><%= @event.end_date.strftime('%A, %B %d, %Y') %>
+			</br>
+			<strong>End Time: </strong><%= @event.end_time.strftime('%H:%M %p') %>
+			</br>
+			</br>
+
+			<strong>Event Location:</strong>
+			</br>
+			<%= @event.location %></br>
+			<%= @event.address %></br>	
+			<%= @event.city %>,  	
+			<%= @event.state %> 
+			<%= @event.zip_code %></br>
+			<%= @event.phone_number %>
+			<br>
+		
+		</p>
+	</div>
+
+	<!-- This the div for the Gmap -->
+	<div class="span6">
+		<strong>Event Location:</strong>
+		<address>
+			<%= @event.address %>
+			<%= @event.city %> 	
+			<%= @event.state %> 
+			<%= @event.zip_code %>
+		</address>
+	</div>
 </div>
 
-<div class="span5">
-	<address>
-		<strong><%= @event.location %></strong></br>	
-		<%= @event.address %></br>	
-		<%= @event.city %>, 	
-		<%= @event.state %> 
-		<%= @event.zip_code %></br>
-		<%= @event.phone_number %>
-	</address>
-</div>
 
-<div id="invitations" class="span12">
-	
-</div>
+<div id="invitations" class="span12"></div>
 
-<div id="wall" class="span12">
-	<h4>Post a comment:</h4>
 
+<div class="span12">
+	<h2>Post a message!</h2>
+    <div class="span10 well">
 	<%= simple_form_for([@event, @post]) do |p| %>
-	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', :rows => 2 } %>
-	  <%= p.button :submit, class: "btn btn-success" %>
+	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', id: 'new_post', :rows => 3 } %>
+	  <%= p.button :submit, class: "btn btn-info", value: 'Post!' %>
 	<% end %>
+</div>
 
-	<h4>Comments posted by users</h4>
+<br>
+<br>
+
+<div class="span12">
 	<% @posts.each do |post| %>
 		<% if !post.content.nil? %>
-			<p id="post_heading"><i>Comment posted on <%= post.created_at.strftime('%A %B %d, %Y %H:%M %p') %> by <small><%= post.user.first_name %> <%= post.user.last_name %>: </small></i></p>
-			<p id="comment"><%= post.content %></p>
-		<% end %>
+			<div class="span10">
+				<p id="post_heading">Posted on <%= post.created_at.strftime('%A, %B %d, %Y at %H:%M %p') %> by <strong><%= post.user.first_name %> <%= post.user.last_name %>: </strong></p>
+				<div class="well">
+					<p><%= post.content %></p>
+				</div>
+			</div>		
+		<% end %>	
 	<% end %>
 </div>
