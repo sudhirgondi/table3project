@@ -4,7 +4,9 @@ class InterestsController < ApplicationController
   end
 
   def new
-    @interest = Interest.new
+    # @interest = Interest.new
+    @events = Event.all
+    
   end
 
   def create

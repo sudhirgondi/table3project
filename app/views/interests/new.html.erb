@@ -34,4 +34,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
 <div id="map-canvas" style="width: 900px; height: 400px">
+
 </div>
+
+<% @events.each do |event| %>
+  <%= event.latitude %>
+  <%= event.longitude %>
+
+  <% end %>
