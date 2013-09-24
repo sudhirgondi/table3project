@@ -31,7 +31,7 @@
                 </tr>
                 <% @events.each do |event| %>
                     <tr>
-                        <td><a href="#"><a><%= event.name %></td>
+                        <td><a href="/events/<%= event['id'] %>"><%= event.name %></a></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>
@@ -48,7 +48,7 @@
                 </tr>
                 <% @events.each do |event| %>
                     <tr>
-                        <td><a href="#"><a><%= event.name %></td>
+                        <td><a href="/events/<%= event['id'] %>"><a><%= event.name %></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>
@@ -65,7 +65,7 @@
                 </tr>
                 <% @events.each do |event| %>
                     <tr>
-                        <td><a href="#"><a><%= event.name %></td>
+                        <td><a href="/events/<%= event['id'] %>"><a><%= event.name %></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>
