@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	  $("address").each(function(){                         
-	    var embed ="<iframe width='425' height='300' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
+	    var embed ="<iframe width='85%' height='300' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
 	        $(this).html(embed);                     
 	   });
 	});
@@ -15,7 +15,7 @@
 <br>
 
 <div class="row">
-	<div class="span6">
+	<div class="span5">
 		<p>
 			<strong>Created by: </strong><%= @owner.first_name%>
 			<br>
@@ -49,7 +49,7 @@
 	</div>
 
 	<!-- This the div for the Gmap -->
-	<div class="span6">
+	<div class="span7">
 		<strong>Event Location:</strong>
 		<address>
 			<%= @event.address %>
