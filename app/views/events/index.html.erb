@@ -1,92 +1,69 @@
+<script type="text/javascript">
+        $(document).ready(function(){
+                $('#myTab a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                });
+        });
+</script>
 
 <h1 id="main_title">Events Dashboard</h1>
 <%= button_to 'Create an event', new_event_path, method: :get, class: 'btn btn-large btn-success' %>
-<div id="content">
-	<div class="my_events">
-		<h3>My Events</h3>
-		<table class="table table-striped">
-		<tr class="my_row">
-			<th>Event</th>
-			<th>Event Name</th>
-			<th>Date and time</th>
-			<th>Event Address</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td><a href="#">Best from the west<a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		</table>
+</br>
+
+<div class="span12">
+
+	<ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#my_events" data-toggle="tab"><h4>My Events</h4></a></li>
+        <li><a href="#joined_events" data-toggle="tab"><h4>Events I've Joined</h4></a></li>
+        <li><a href="#invited_to_events" data-toggle="tab"><h4>Events I'm Invited To</h4></a></li>
+	</ul>
+
+    <div id="myTabContent" class="tab-content">
+    	<div class="tab-pane active in" id="my_events">
+	        <table class="table table-striped">
+                <tr class="my_row">
+                    <th>Event Name</th>
+                    <th>Date and time</th>
+                </tr>
+                <% @events.each do |event| %>
+	                <tr>
+	                    <td><a href="#"><a><%= event.name %></td>
+	                    <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
+	                </tr>
+	            <% end %>
+            </table>
+		</div>
 	</div>
-	<div class="events_joined">
-		<h3>Events I've joined</h3>
-		<table class="table table-striped">
-		<tr>
-			<th>Event</th>
-			<th>Event Name</th>
-			<th>Date and time</th>
-			<th>Event Address</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		</table>
-	</div>
-	<div class="invited_events">
-		<h3>Events I've been invited</h3>
-		<table class="table table-striped">
-		<tr>
-			<th>Event</th>
-			<th>Event Name</th>
-			<th>Date and time</th>
-			<th>Event Address</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td><a href="#">Best from the west</a></td>
-			<td>Sunday March 15, 2011 @ 3:00p.m.</td>
-			<td>840 Washington Park, Sunnyvale,CA 94043</td>
-		</tr>
-		</table>
-	</div>
+
+    <div class="tab-pane fade" id="joined_events">
+        <table class="table table-striped">
+            <tr class="my_row">
+                <th>Event Name</th>
+                <th>Date and time</th>
+            </tr>
+            <% @events.each do |event| %>
+	            <tr>
+	                <td><a href="#"><a><%= event.name %></td>
+	                <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
+	            </tr>
+	        <% end %>
+        </table>
+    </div>
+
+    <div class="tab-pane fade" id="invited_to_events">
+        <table class="table table-striped">
+            <tr class="my_row">
+                <th>Event Name</th>
+                <th>Date and time</th>
+            </tr>
+            <% @events.each do |event| %>
+                <tr>
+                    <td><a href="#"><a><%= event.name %></td>
+                    <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+
 </div>
