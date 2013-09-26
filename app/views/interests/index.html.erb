@@ -1,90 +1,66 @@
+<!-- <div class="span4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Interest Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%# @interests.each do |interest| %>
+        <tr>
+          <td><%= link_to interest.name, interest_path(interest) %></td>
+        </tr>
+      <%# end %>
+    </tbody>
+  </table>
+</div> -->
 
-		<div class="clear" id="show_result">
-		</div>
-		<form class="left" id="myform" action="process.php" method="post">
-		<input type="hidden" name="action" value="login" />
-		</form>
-	<div id="header">
-		<h1>FAVORITES</h1>
-		<div class="interest">
-			<img src="../../assets/images/croquet.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Croquet', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'remove favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-	</div>
-	<div class="clear">
-		<div class="interest">
-			<img src="/assets/images/checkers.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Checkers', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/pingpong.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Ping Pong', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/football.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Football', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/hiking.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Hiking', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/swimming.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Swimming', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-	</div>
-	<div class="clear">
-		<div class="interest">
-			<img src="assets/images/croquet.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Croquet', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/volleyball.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Volleyball', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/foosball.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Foosball', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/blackjack.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'BlackJack', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-		<div class="interest">
-			<img src="assets/images/soccer.jpg" class="circle" alt="" />
-			<p>
-				<%= link_to 'Soccer', interest_path(@interest), class: 'title_link' %>
-				<%= link_to 'favorite', interest_path(@interest), class: 'favorite_link' %>
-			</p>
-		</div>
-	</div>
+
+
+<%= stylesheet_link_tag 'interests' %>
+
+
+<h1>Interests</h1>
+<h2>Hi <%= session[:user_id] %></h2>
+<table>
+ <thead>
+  <tr>
+   <th>ID</th>
+   <th>Name</th>
+   <th>Action</th>
+  <tr>
+ </thead>
+ <tbody>
+ <% @interests.each do |interest| %>
+  <tr>
+   <td><%= interest.id %></td>
+   <td><%= interest.name %></td>
+   <td>
+    <%= link_to 'favorite', user_interests_create_path( :interest_id => interest.id), class: 'favorite_link' %>
+   </td>  
+  <tr>
+ <% end %>
+ <tbody>
+</table>
+
+
+
+<p id="top"><h1 id="interests_header">FAVORITES</h1></p><div id="header"><div class="clear">
+<% @favorites.each do |interest| %>
+<div class="interest">
+<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
+<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
+<%= button_to 'remove', interest_path(@interest), class: 'favorite_remove' %>
+</p></div>
+<% end %>
+</div></div>
+
+
+<% @interests.each do |interest| %>
+<div class="interest">
+<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
+<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
+</p></div>
+<% end %>
+</div>
+

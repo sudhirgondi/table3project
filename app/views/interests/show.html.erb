@@ -1,4 +1,4 @@
-<h1><%= interest.name %> event in your area</h1>
+<h1><%= @interest.name %> event in your area</h1>
 <div class=span12>
   <a id="interest_map" href="interest.map"></a>
 </div>
@@ -13,39 +13,50 @@
       </tr>
     </thead>
     <tbody>
-      <% @interest.users do |iuser| %>
+      <% @interest_users.each do |iuser| %>
         <tr>
           <td><%= iuser.first_name %></td>
           <td><%= iuser.last_name %></td>
           <td></td>
+      <% end %>
     </tbody>
   </table>
 </div>
 
-<div class="span8">
-  <%= link_to 'Create your event', new_interest_event_path(interest), :class=> "btn btn-primary pull-right" %>
+<div class="span12">
+  
   <table class="table">
     <thead>
       <tr>
         <th>Event Name</th>
-        <th>Event Date</th>
+        <th>Event Start Date</th>
         <th>Event Starts at</th>
+        <th>Event End Date</th>
         <th>Event Ends at</th>
-        <th>Event Location Name</th>
-        <th>Event Location Address</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @interest.events do |ievent| %>
+      <% @interest_events.each do |ievent| %>
         <tr>
-          <td><a href="<%= ievent.name %>"</td></a>
-          <td><%= ievent.date %></td>
-          <td><%= ievent.starts_at %></td>
-          <td><%= ievent.ends_at %></td>
-          <td><%= ievent.location_name %></td>
-          <td><%= ievent.location_address %></td>
+          <td><%= link_to ievent.name, event_path(ievent) %></td>
+          <td><%= ievent.start_date.strftime('%A %B %d, %Y') %></td>
+          <td><%= ievent.start_time.strftime('%H:%M %p') %></td>
+          <td><%= ievent.end_date.strftime('%A %B %d, %Y') %></td>
+          <td><%= ievent.end_time.strftime('%H:%M %p') %></td>
+          <% if @joined_events.include?(ievent.id) %>
+            <td>Joined</td>
+          <% else %> 
+            <td><%= button_to 'Join', invites_path(:invite =>{:user_id => current_user.id, :event_id => ievent.id, :attendee_status => 3}), method: :post, class: 'btn btn-small btn-success' %> </td>
+          <% end %>
           <td></td>
+      <% end %>
     </tbody>
   </table>
 </div>
+
+<div id="map" style="width: 850px; height: 400px;"></div>
+
+<%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list" } }) %>
+<ul id="markers_list">  </ul>
+

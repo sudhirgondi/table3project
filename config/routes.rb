@@ -1,9 +1,10 @@
 Table3project::Application.routes.draw do
 
+  
   resources :events do
     resources :posts
   end
-
+  resources :invites
   resources :interests
   resources :users
   resources :sessions,  :only => [:new, :create, :destroy]
@@ -13,7 +14,8 @@ Table3project::Application.routes.draw do
   get "/signin",    :to => 'sessions#new'
   get "/signout",   :to => 'sessions#destroy'
 
-  root :to => 'interests#index'
+  # root :to => 'interests#index'
+  root :to => 'users#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessor :password
 
+  has_many :user_interests
   has_many :interests, through: :user_interests
   has_many :posts
-  has_many :events
+  has_many :events, through: :event_attendants
   has_many :event_attendants
 
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i

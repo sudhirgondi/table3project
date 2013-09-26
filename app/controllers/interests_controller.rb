@@ -8,16 +8,34 @@ class InterestsController < ApplicationController
   end
 
   def create
-    @interest = Interest.new(interest_params)
-    if @interest.save 
-      redirect_to interest_path(@interest)
-    else
-      render action: 'new'
-    end
+    # @interest = Interest.new(interest_params)
+    # if @interest.save 
+    #   redirect_to interest_path(@interest)
+    # else
+    #   render action: 'new'
+    # end
+
+    interest_info = Interest.find(params[:interest_id])
+    interest = User.find(session[:user_id]).interests.push(interest_info)
+    redirect_to :back
   end
 
   def show
     set_interest
+    @interest_users = @interest.users
+    @interest_events = @interest.events
+    @joined_events = User.find(current_user.id).events.pluck(:id)
+
+    @events = @interest.events
+    @json = @events.to_gmaps4rails
+
+    @favorites = User.find(current_user.id).interests
+    e = User.find(current_user.id).user_interests.pluck(:interest_id)
+    arr = e.join(",")
+    @interests = Interest.where("id not in (#{arr})")
+  end
+  def gmaps4rails_infowindow
+      "<h1>hi!</h1>"
   end
 
   def edit
