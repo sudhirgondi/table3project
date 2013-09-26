@@ -1,4 +1,4 @@
-<!-- <div class="span4">
+<div class="span4">
   <table class="table">
     <thead>
       <tr>
@@ -6,61 +6,14 @@
       </tr>
     </thead>
     <tbody>
-      <%# @interests.each do |interest| %>
+      <% @interests.each do |interest| %>
         <tr>
           <td><%= link_to interest.name, interest_path(interest) %></td>
         </tr>
-      <%# end %>
+      <% end %>
     </tbody>
   </table>
-</div> -->
-
-
-
-<%= stylesheet_link_tag 'interests' %>
-
-
-<h1>Interests</h1>
-<h2>Hi <%= session[:user_id] %></h2>
-<table>
- <thead>
-  <tr>
-   <th>ID</th>
-   <th>Name</th>
-   <th>Action</th>
-  <tr>
- </thead>
- <tbody>
- <% @interests.each do |interest| %>
-  <tr>
-   <td><%= interest.id %></td>
-   <td><%= interest.name %></td>
-   <td>
-    <%= link_to 'favorite', user_interests_create_path( :interest_id => interest.id), class: 'favorite_link' %>
-   </td>  
-  <tr>
- <% end %>
- <tbody>
-</table>
-
-
-
-<p id="top"><h1 id="interests_header">FAVORITES</h1></p><div id="header"><div class="clear">
-<% @favorites.each do |interest| %>
-<div class="interest">
-<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
-<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
-<%= button_to 'remove', interest_path(@interest), class: 'favorite_remove' %>
-</p></div>
-<% end %>
-</div></div>
-
-
-<% @interests.each do |interest| %>
-<div class="interest">
-<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
-<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
-</p></div>
-<% end %>
 </div>
+
+
 

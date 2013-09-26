@@ -1,7 +1,4 @@
 <h1><%= @interest.name %> event in your area</h1>
-<div class=span12>
-  <a id="interest_map" href="interest.map"></a>
-</div>
 
 <div class="span4">
   <table class="table">
@@ -45,9 +42,9 @@
           <td><%= ievent.end_date.strftime('%A %B %d, %Y') %></td>
           <td><%= ievent.end_time.strftime('%H:%M %p') %></td>
           <% if @joined_events.include?(ievent.id) %>
-            <td>Joined</td>
-          <% else %> 
             <td><%= button_to 'Join', invites_path(:invite =>{:user_id => current_user.id, :event_id => ievent.id, :attendee_status => 3}), method: :post, class: 'btn btn-small btn-success' %> </td>
+          <% else %> 
+            <td>Joined</td>
           <% end %>
           <td></td>
       <% end %>
@@ -59,4 +56,6 @@
 
 <%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list" } }) %>
 <ul id="markers_list">  </ul>
+
+
 

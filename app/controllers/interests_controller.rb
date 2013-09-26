@@ -24,15 +24,10 @@ class InterestsController < ApplicationController
     set_interest
     @interest_users = @interest.users
     @interest_events = @interest.events
-    @joined_events = User.find(current_user.id).events.pluck(:id)
+    @joined_events = User.find(current_user.id).events.where('attendee_status = 0').pluck(:id)
 
     @events = @interest.events
     @json = @events.to_gmaps4rails
-
-    @favorites = User.find(current_user.id).interests
-    e = User.find(current_user.id).user_interests.pluck(:interest_id)
-    arr = e.join(",")
-    @interests = Interest.where("id not in (#{arr})")
   end
   def gmaps4rails_infowindow
       "<h1>hi!</h1>"
@@ -54,11 +49,8 @@ class InterestsController < ApplicationController
   end
 
   def destroy
-    if set_interest.destroy
-      redirect_to interests_path, notice: 'Interest deleted.'
-    else
-      render action: 'index'
-    end
+    User.find(current_user.id).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
+    redirect_to :back
   end
 
   private

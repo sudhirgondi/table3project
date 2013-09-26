@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     @my_events = User.find(current_user.id).event_attendants.where('owner = 1')
 
     # events this user has joined
-    @joined_events = User.find(current_user.id).event_attendants.where('attendee_status = 3 and owner != 1')
+    @joined_events = User.find(current_user.id).event_attendants.where('attendee_status = 3 and owner IS NULL')
  
     # events this user is invited to
     # @invited_to__events = User.find(current_user.id).event_attendants.where('owner = 0 and attendee_status = 0').includes(:event)

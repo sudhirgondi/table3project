@@ -1,32 +1,24 @@
-<h1>User Profile</h1>
+<h1>My Interests</h1>
 
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
-<table class="users table">
-	<tr>
-		<th>ID</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Email Address</th>
-		<th>Address</th>
-		<th>City</th>
-		<th>State</th>
-		<th>Zip Code</th>
-	</tr>
-		<tr>
-			<td><%= @user['id'] %></td>		
-		    <td><%= @user['first_name'] %></td>
-		    <td><%= @user['last_name'] %></td>
-		    <td><%= @user['email_address'] %></td>
-		   	<td><%= @user['address'] %></td>
-		   	<td><%= @user['city'] %></td>
-		   	<td><%= @user['state'] %></td>
-		   	<td><%= @user['zip_code'] %></td>
-		</tr>
-</table>
-
-<% if signed_in? %>
-	<%= link_to 'Edit', edit_user_path(@user) %>
-<% else %>
+<p id="top"><h1 id="interests_header">FAVORITES</h1></p><div id="header"><div class="clear">
+<% @favorites.each do |interest| %>
+<div class="interest">
+<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
+<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
+<%= link_to 'remove', interest_path( :interest_id => interest.id), method: :delete, class: 'favorite_remove' %>
+</p></div>
 <% end %>
+</div></div>
+
+
+<% @interests.each do |interest| %>
+<div class="interest">
+<%= image_tag "#{interest.id}.jpg" , class: 'circle' %><p>
+<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
+<%= link_to 'favorite', interests_path( :interest_id => interest.id), method: :post, class: 'favorite_add' %>
+</p></div>
+<% end %>
+</div>
