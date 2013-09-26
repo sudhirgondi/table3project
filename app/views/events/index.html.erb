@@ -8,7 +8,11 @@
 </script>
 
 <h1 id="main_title">My Events Dashboard</h1>
+
 <%= button_to 'Create an event', new_event_path, method: :get, class: 'btn btn-large btn-success' %>
+
+<p class="notice"><%= flash[:notice] %></p>
+<p class="error"><%= flash[:error] %></p>
 
 </br>
 
@@ -26,12 +30,16 @@
             <table class="table table-striped">
                 <tr class="my_row">
                     <th>Event Name</th>
+                    <th>Interest</th>
+                    <th>Created By</th>
                     <th>Description</th>
                     <th>Date and time</th>
                 </tr>
-                <% @events.each do |event| %>
+                <% @my_events.each do |event| %>
                     <tr>
                         <td><a href="/events/<%= event['id'] %>"><%= event.name %></a></td>
+                        <td><%= Interest.find(event.interest_id).name %></td>
+                        <td><%= User.find(event.owner_user_id).first_name %> <%= User.find(event.owner_user_id).last_name %></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>
@@ -43,12 +51,16 @@
             <table class="table table-striped">
                 <tr class="my_row">
                     <th>Event Name</th>
+                    <th>Interest</th>
+                    <th>Created By</th>
                     <th>Description</th>
                     <th>Date and time</th>
                 </tr>
                 <% @events.each do |event| %>
                     <tr>
-                        <td><a href="/events/<%= event['id'] %>"><a><%= event.name %></td>
+                        <td><a href="/events/<%= event['id'] %>"><%= event.name %></a></td>
+                        <td><%= Interest.find(event.interest_id).name %></td>
+                        <td><%= User.find(event.owner_user_id).first_name %> <%= User.find(event.owner_user_id).last_name %></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>
@@ -60,12 +72,16 @@
             <table class="table table-striped">
                 <tr class="my_row">
                     <th>Event Name</th>
+                    <th>Interest</th>
+                    <th>Created By</th>
                     <th>Description</th>
                     <th>Date and time</th>
                 </tr>
                 <% @events.each do |event| %>
                     <tr>
-                        <td><a href="/events/<%= event['id'] %>"><a><%= event.name %></td>
+                        <td><a href="/events/<%= event['id'] %>"><%= event.name %></a></td>
+                        <td><%= Interest.find(event.interest_id).name %></td>
+                        <td><%= User.find(event.owner_user_id).first_name %> <%= User.find(event.owner_user_id).last_name %></td>
                         <td><%= event.description %></td>
                         <td><%= event.start_date.strftime('%a %b %d, %Y') %> <%= event.start_time.strftime('%H:%M %p') %></td>
                     </tr>

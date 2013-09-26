@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 	has_many :posts,:dependent=>:destroy
+	has_many :event_attendants
 	has_many :users, through: :event_attendants
+
 	belongs_to :interest
 
 	geocoded_by :address

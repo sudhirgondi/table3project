@@ -1,9 +1,28 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	  $("address").each(function(){                         
-	    var embed ="<iframe width='85%' height='300' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
+	    var embed ="<iframe width='90%' height='360' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
 	        $(this).html(embed);                     
 	   });
+
+	 //    $("#userinvite").submit(function(){
+  //           var form = $(this);
+  //           $.post(form.attr('action'), form.serialize(), function(data)
+  //           {
+  //               $('#userinvite').html(data);
+  //           }, "json");
+  //           return false;
+		// });
+
+	 //    $("#new_post").submit(function(){
+		//     var form = $(this);
+		//     $.post(form.attr('action'), form.serialize(), function(data)
+		//     {
+		//         $('#new_post').html(data);
+		//     }, "json");
+		//     return false;
+		// });
+
 	});
 </script>
 
@@ -17,7 +36,9 @@
 <div class="row">
 	<div class="span4">
 		<p>
-			<strong>Created by: </strong><%= @owner.first_name%>
+			<strong>Created by: </strong><%= @owner.first_name%> <%= @owner.last_name%>
+			<br>
+			<strong>Interest: </strong><%= @interest_name%>
 			<br>
 			<strong>Created on: </strong><%=@event.created_at.strftime('%A, %B %d, %Y at %H:%M %p')%>
 			<br>
@@ -60,9 +81,64 @@
 	</div>
 </div>
 
+<div id="invitation_headings" class="row">
+	<div class="span3">
+		<h4>Invite Users</h4>
+	</div>
+	<div class="span2">
+		<h4>Going :)</h4>
+	</div>
+	<div class="span2">
+		<h4>Maybe :|</h4>
+	</div>
+	<div class="span2">
+		<h4>Not Going :(</h4>
+	</div>
+	<div class="span2">
+		<h4>No response</h4>
+	</div>
+</div>
+<div id="invitations" class="row">
+	<div class="span3">
+		<% @interested_uninvited_ids.each do |invite| %>			
+			<form action="/invites/" method="post" id="userinvite">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<input type='hidden' name="invite[event_id]" value="<%= @event.id %>">
+				<input type='hidden' name="invite[user_id]" value="<%= invite %>">
+				<input type='hidden' name="invite[attendee_status]" value="0">
+				<input type='hidden' name="_method" value="create">
+				<input class="btn btn-small btn-info" type="submit" value="Invite" />
+			  	<%= User.find(invite).first_name %> <%= User.find(invite).last_name %>
+			</form>
+		<% end %>
+	</div>
+	<div class="span2">
+		<% @going_users.each do |user| %>
+			<%= user.first_name %> <%= user.last_name %>
+			<br>
+		<% end %>
+	</div>
+	<div class="span2">
+		<% @maybe_users.each do |user| %>
+			<%= user.first_name %> <%= user.last_name %>
+			<br>
+		<% end %>
+	</div>
+	<div class="span2">
+		<% @notgoing_users.each do |user| %>
+			<%= user.first_name %> <%= user.last_name %>
+			<br>
+		<% end %>
+	</div>
+	<div class="span2">
+		<% @invited_users.each do |user| %>
+			<%= user.first_name %> <%= user.last_name %>
+			<br>
+		<% end %>
+	</div>
+</div>
 
-<div id="invitations" class="span12"></div>
-
+<br>
 
 <div class="span12">
 	<h2>Post a message!</h2>
@@ -84,7 +160,7 @@
 				<div class="well">
 					<p><%= post.content %></p>
 				</div>
-			</div>		
-		<% end %>	
+			</div>
+		<% end %>
 	<% end %>
 </div>

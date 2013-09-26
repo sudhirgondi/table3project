@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       if @post.save
         @post = Post.all
         format.html { redirect_to event_path(params[:event_id]) }
-        # format.json { render action: 'show', status: :created, location: products_path }
+        # format.json { render json: @post }
       else
         format.html { render action: 'new' }
         # format.json { render json: products_path.errors, status: :unprocessable_entity }

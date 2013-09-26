@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password
 
+  has_many :user_interests
   has_many :interests, through: :user_interests
   has_many :posts
   has_many :events

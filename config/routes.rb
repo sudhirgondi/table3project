@@ -4,6 +4,7 @@ Table3project::Application.routes.draw do
     resources :posts
   end
 
+  resources :invites
   resources :interests
   resources :users
   resources :sessions,  :only => [:new, :create, :destroy]
