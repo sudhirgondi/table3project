@@ -10,8 +10,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post = Post.all
         format.html { redirect_to event_path(params[:event_id]) }
+        format.js { render 'create' }
         # format.json { render action: 'show', status: :created, location: products_path }
       else
         format.html { render action: 'new' }

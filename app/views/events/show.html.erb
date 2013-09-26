@@ -5,23 +5,9 @@
 	        $(this).html(embed);                     
 	   });
 
-	 //    $("#userinvite").submit(function(){
-  //           var form = $(this);
-  //           $.post(form.attr('action'), form.serialize(), function(data)
-  //           {
-  //               $('#userinvite').html(data);
-  //           }, "json");
-  //           return false;
-		// });
-
-	 //    $("#new_post").submit(function(){
-		//     var form = $(this);
-		//     $.post(form.attr('action'), form.serialize(), function(data)
-		//     {
-		//         $('#new_post').html(data);
-		//     }, "json");
-		//     return false;
-		// });
+	  $('.userinvite').submit(function(){
+	 	$(this).hide();	
+	  });
 
 	});
 </script>
@@ -101,7 +87,7 @@
 <div id="invitations" class="row">
 	<div class="span3">
 		<% @interested_uninvited_ids.each do |invite| %>			
-			<form action="/invites/" method="post" id="userinvite">
+			<form action="/invites.js" method="post" class="userinvite" data-remote="true" >
 				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 				<input type='hidden' name="invite[event_id]" value="<%= @event.id %>">
 				<input type='hidden' name="invite[user_id]" value="<%= invite %>">
@@ -130,7 +116,7 @@
 			<br>
 		<% end %>
 	</div>
-	<div class="span2">
+	<div class="span2" id="invited_users">
 		<% @invited_users.each do |user| %>
 			<%= user.first_name %> <%= user.last_name %>
 			<br>
@@ -143,7 +129,7 @@
 <div class="span12">
 	<h2>Post a message!</h2>
     <div class="span10 well">
-	<%= simple_form_for([@event, @post]) do |p| %>
+	<%= simple_form_for([@event, @post], :format => :js, :remote => true) do |p| %>
 	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', id: 'new_post', :rows => 3 } %>
 	  <%= p.button :submit, class: "btn btn-info", value: 'Post!' %>
 	<% end %>
@@ -152,11 +138,11 @@
 <br>
 <br>
 
-<div class="span12">
+<div class="span12" id="post_content">
 	<% @posts.each do |post| %>
 		<% if !post.content.nil? %>
 			<div class="span10">
-				<p id="post_heading">Posted on <%= post.created_at.strftime('%A, %B %d, %Y at %H:%M %p') %> by <strong><%= post.user.first_name %> <%= post.user.last_name %>: </strong></p>
+				<p class="post_heading">Posted on <%= post.created_at.strftime('%A, %B %d, %Y at %H:%M %p') %> by <strong><%= post.user.first_name %> <%= post.user.last_name %>: </strong></p>
 				<div class="well">
 					<p><%= post.content %></p>
 				</div>
