@@ -1,5 +1,5 @@
 <h1>Display all users</h1>
-<%= link_to 'New User', new_user_path, class: "btn btn-large btn-info" %>
+<%= button_to 'New User', new_user_path, :method => :get, class: "btn btn-large btn-info" %>
 
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
