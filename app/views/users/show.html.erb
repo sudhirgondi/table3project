@@ -11,7 +11,7 @@
 	<div class="clear">
 		<% @favorites.each do |interest| %>
 			<div class="interest">
-				<%= image_tag "#{interest.id}.jpg" , class: 'circle' %>
+				<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
 				<p>
 					<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
 					<%= link_to 'remove', interest_path( :interest_id => interest.id), method: :delete, class: 'favorite_remove' %>
@@ -24,7 +24,7 @@
 
 <% @interests.each do |interest| %>
 	<div class="interest">
-		<%= image_tag "#{interest.id}.jpg" , class: 'circle' %>
+		<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
 		<p>
 			<%= link_to interest.name, interest_path(interest.id), class: 'interest' %>
 			<%= link_to 'favorite', interests_path( :interest_id => interest.id), method: :post, class: 'favorite_add' %>

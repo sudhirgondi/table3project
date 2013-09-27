@@ -130,7 +130,7 @@
 	<h2>Post a message!</h2>
     <div class="span10 well">
 	<%= simple_form_for([@event, @post], :format => :js, :remote => true) do |p| %>
-	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', id: 'new_post', :rows => 3 } %>
+	  <%= p.input :content, :as => :text, :input_html => { class: 'input-large', id: 'new_post_input', :rows => 3 } %>
 	  <%= p.button :submit, class: "btn btn-info", value: 'Post!' %>
 	<% end %>
 </div>
