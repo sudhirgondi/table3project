@@ -23,7 +23,8 @@ class UsersController < ApplicationController
     @favorites = @user.interests
     e = @user.user_interests.pluck(:interest_id)
     arr = e.join(",")
-    @interests = Interest.where("id not in (#{arr})")
+
+    @interests = Interest.where("id not in (#{arr})").order('name ASC')
   end
 
   def edit

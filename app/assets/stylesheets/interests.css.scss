@@ -8,21 +8,16 @@
 	border-radius:15px;
 }
 
-	#interests_header {
-		text-align: center;
-		width: 230px;
-		margin: 0px 0px 0px 445px;
-		padding: 0px;
-		background-color: #DDD3D0;
-	}
-
 .interest {
 	float: left;
 	text-align: center;
-	font-size: 24px;
 	line-height: 0.3;
-	margin-top: 10px;
+	margin: 10px 5px 0px 0px;
 }
+
+	.interest_title {
+		font-size: 22px;		
+	}
 
 	.circle {
 		border-radius: 50%;
@@ -33,13 +28,13 @@
 	}
 
 	.interest  p {
-		margin: 10px;
+		margin: 4px;
 		padding: 0px;
 	}
 
 	.favorite_add, .favorite_remove {
 		margin-left: 4px;
-		font-size: 18px;
+		font-size: 16px;
 	}	
 
 .clear {
@@ -74,3 +69,75 @@
 	padding-left: 15px;
 	padding-bottom: 120px;
 }
+
+#signuptoview {
+	padding:60px;
+	margin-left:160px;
+}
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+
+    .custom_caption {
+    	height:300px;
+    	width:100%;
+    	text-align: center;
+    }
+
+    .carousel-caption {
+      height:100px;
+      text-align: center;
+      opacity: 1;
+      padding: 0 20px;
+      margin:0 auto;
+      width:100%;
+
+      /*max-width: 500px;*/
+      /*margin-top: 200px;*/
+      /*background-color: transparent;*/
+      /*position: static;*/
+    }
+
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+
