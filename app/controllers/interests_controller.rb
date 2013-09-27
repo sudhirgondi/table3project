@@ -24,7 +24,12 @@ class InterestsController < ApplicationController
     set_interest
     @interest_users = @interest.users
     @interest_events = @interest.events
-    @joined_events = User.find(current_user.id).events.where('attendee_status = 0').pluck(:id)
+    @i_id = @interest.id 
+    if signed_in?
+      @invited_to_events = User.find(current_user.id).events.where("interest_id = #{@i_id} and attendee_status = 0").pluck(:id)
+      @joined_events = User.find(current_user.id).events.where("interest_id = #{@i_id} and attendee_status = 3").pluck(:id)
+      # @event_attendants = Event.find(25).event_attendants.where("user_id = #{current_user.id} and attendee_status = 0")
+    end
 
     @events = @interest.events
     @json = @events.to_gmaps4rails
