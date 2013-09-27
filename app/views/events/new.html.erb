@@ -4,7 +4,7 @@
 <p class="error"><%= flash[:error] %></p>
 
 <%= simple_form_for(@event) do |f| %>
-  <%= f.input :interest_id, :collection => Interest.all.order('name ASC'), :label_method => :name, :value_method => :id, label: "Interest Category", :required => true %>
+  <%= f.input :interest_id, :collection => Interest.all.order('name ASC'), :selected => @default_int_id, :label_method => :name, :value_method => :id, label: "Interest Category", :required => true %>
   <%= f.input :name, label: "Event Name" %>
   <%= f.input :location, label: "Event Location" %>
   <%= f.input :address, label: "Event Address" %>

@@ -16,6 +16,8 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    # render :text => params
+    @default_int_id = params[:format]
   end
 
   def create
@@ -87,7 +89,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit([:name, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :owner_user_id, :interest_id])
+      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :owner_user_id, :interest_id])
     end
 
 end

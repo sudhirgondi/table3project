@@ -3,7 +3,9 @@
 
 <%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list" } }) %>
 
-
+<div class"span12">
+<%= button_to 'Create an event', new_event_path(@interest.id), :method => :get, class: 'btn btn-large btn-success' %>
+</div>
 <div class="span2" id="fanatics_list">
   <h4>Fanatics</h4>
   <% @interest_users.each do |iuser| %>
