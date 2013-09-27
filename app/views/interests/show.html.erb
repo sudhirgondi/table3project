@@ -1,35 +1,27 @@
-<h1><%= @interest.name %> event in your area</h1>
+<h1><%= @interest.name %> events in your area</h1>
+<div id="map" style="width: 100%; height: 400px;"></div>
 
-<div class="span4">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Activity Meter</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @interest_users.each do |iuser| %>
-        <tr>
-          <td><%= iuser.first_name %></td>
-          <td><%= iuser.last_name %></td>
-          <td></td>
-      <% end %>
-    </tbody>
-  </table>
+<%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list" } }) %>
+
+
+
+<div class="span2.5">
+  <h4><%= @interest.name %> Fanatics</h4>
+  <% @interest_users.each do |iuser| %>
+    <%= iuser.first_name %> 
+    <%= iuser.last_name %></br>
+  <% end %>
 </div>
 
-<div class="span12">
-  
+<div class="span7">
+  <h4>Events</h4>
   <table class="table">
     <thead>
       <tr>
         <th>Event Name</th>
         <th>Event Start Date</th>
         <th>Event Starts at</th>
-        <th>Event End Date</th>
-        <th>Event Ends at</th>
+        <th>Invitation status</th>
         <th></th>
       </tr>
     </thead>
@@ -39,23 +31,31 @@
           <td><%= link_to ievent.name, event_path(ievent) %></td>
           <td><%= ievent.start_date.strftime('%A %B %d, %Y') %></td>
           <td><%= ievent.start_time.strftime('%H:%M %p') %></td>
-          <td><%= ievent.end_date.strftime('%A %B %d, %Y') %></td>
-          <td><%= ievent.end_time.strftime('%H:%M %p') %></td>
-          <% if @joined_events.include?(ievent.id) %>
-            <td><%= button_to 'Join', invites_path(:invite =>{:user_id => current_user.id, :event_id => ievent.id, :attendee_status => 3}), method: :post, class: 'btn btn-small btn-success' %> </td>
+          <% if @invited_to_events.include?(ievent.id) %>
+            <td>Invited</td> 
           <% else %> 
-            <td>Joined</td>
+            <td>Not invited</td>
           <% end %>
-          <td></td>
+
+          <% if @joined_events.include?(ievent.id) %>
+            <td>Joined</td>
+          <% elsif @invited_to_events.include?(ievent.id) %>
+            <td><%= button_to 'Join', invite_path(ievent.event_attendant, :status => 3), method: :patch, class: 'btn btn-small btn-success' %> </td>
+          <% else %> 
+            <td><%= button_to 'Join', invites_path(:invite =>{:user_id => current_user.id, :event_id => ievent.id, :attendee_status => 3}), method: :post, class: 'btn btn-small btn-success' %> </td>
+          <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
 
-<div id="map" style="width: 850px; height: 400px;"></div>
+<div class="span2">
+    <h4>Locate on the map</h4>
+  </br>
+  </br>
+  <p id="markers_list"> </p>
 
-<%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list" } }) %>
-<ul id="markers_list">  </ul>
+</div>
 
 
 
