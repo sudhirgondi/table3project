@@ -38,8 +38,8 @@ class EventsController < ApplicationController
     set_event
     @interest_name = Interest.find(@event.interest_id).name
 
-    # @owner = @event.users.where('owner = 1').first
-    @owner = @event.users.first
+    @owner = @event.users.where('owner = 1').first
+    # @owner = @event.users.first
     @post = @event.posts.new
     @posts = @event.posts.order('posts.created_at DESC')
 
