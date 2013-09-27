@@ -10,6 +10,8 @@ class EventsController < ApplicationController
     # @invited_to__events = User.find(current_user.id).event_attendants.where('owner = 0 and attendee_status = 0').includes(:event)
     @invited_to_events = User.find(current_user.id).event_attendants.where('attendee_status = 0')
 
+    @maybe_events = User.find(current_user.id).event_attendants.where('attendee_status = 2')
+
   end
 
   def new
