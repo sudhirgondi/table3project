@@ -10,6 +10,8 @@ class EventsController < ApplicationController
     # @invited_to__events = User.find(current_user.id).event_attendants.where('owner = 0 and attendee_status = 0').includes(:event)
     @invited_to_events = User.find(current_user.id).event_attendants.where('attendee_status = 0')
 
+    @maybe_events = User.find(current_user.id).event_attendants.where('attendee_status = 2')
+
   end
 
   def new
@@ -34,7 +36,8 @@ class EventsController < ApplicationController
     set_event
     @interest_name = Interest.find(@event.interest_id).name
 
-    @owner = @event.users.where('owner = 1').first
+    # @owner = @event.users.where('owner = 1').first
+    @owner = @event.users.first
     @post = @event.posts.new
     @posts = @event.posts.order('posts.created_at DESC')
 
