@@ -3,6 +3,7 @@
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
+
 <div id="header">
 	<% @favorites.each do |interest| %>
 		<div class="interest">
@@ -11,6 +12,7 @@
 			<%= link_to 'remove', interest_path( :interest_id => interest.id), method: :delete, class: 'favorite_remove' %></p>
 		</div>
 	<% end %>
+	<p id='no_favorite'><%= @no_favorites %></p>
 </div>
 
 <p id="top">
