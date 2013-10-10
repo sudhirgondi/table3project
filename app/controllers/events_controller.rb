@@ -95,12 +95,6 @@ class EventsController < ApplicationController
       end
     end
 
-    if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
-    else
-      render action: 'edit'
-    end
-
   end
 
   def destroy
@@ -120,11 +114,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-<<<<<<< HEAD
-      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :interest_id, :phone_number, :invite_all])
-=======
       params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :status, :event_type, :interest_id, :phone_number, :invite_all])
->>>>>>> 3b6d02f0fc1885b7b2b137678d1aaa5683d79cef
     end
 
 end
