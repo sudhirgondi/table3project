@@ -30,8 +30,23 @@ class InvitesController < ApplicationController
     set_invite
     @ea = EventAttendant.find(params[:id])
     @ea.attendee_status = params[:status]
-    @ea.save
-    redirect_to events_path
+
+    @my_events = User.find(current_user.id).event_attendants.where('owner = 1')
+
+    # events this user has joined
+    @joined_events = User.find(current_user.id).event_attendants.where('attendee_status = 3 and owner IS NULL')
+ 
+    # events this user is invited to
+    @invited_to_events = User.find(current_user.id).event_attendants.where('attendee_status = 0')
+
+    @maybe_events = User.find(current_user.id).event_attendants.where('attendee_status = 2')
+
+    respond_to do |format|
+      if @ea.save
+        format.html { redirect_to :back }
+        format.js { render 'events/update' }
+      end
+    end
   end
 
   def destroy

@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     @joined_events = User.find(current_user.id).event_attendants.where('attendee_status = 3 and owner IS NULL')
  
     # events this user is invited to
-    # @invited_to__events = User.find(current_user.id).event_attendants.where('owner = 0 and attendee_status = 0').includes(:event)
     @invited_to_events = User.find(current_user.id).event_attendants.where('attendee_status = 0')
 
     @maybe_events = User.find(current_user.id).event_attendants.where('attendee_status = 2')
@@ -39,14 +38,18 @@ class EventsController < ApplicationController
     @interest_name = Interest.find(@event.interest_id).name
 
     @owner = @event.users.where('owner = 1').first
-    # @owner = @event.users.first
+
     @post = @event.posts.new
     @posts = @event.posts.order('posts.created_at DESC')
 
-    @invited_users = User.joins(:event_attendants).where('attendee_status = 0').where('event_id = ?', @event.id).order('first_name ASC')
-    @notgoing_users = User.joins(:event_attendants).where('attendee_status = 1').where('event_id = ?', @event.id).order('first_name ASC')
-    @maybe_users = User.joins(:event_attendants).where('attendee_status = 2').where('event_id = ?', @event.id).order('first_name ASC')
-    @going_users = User.joins(:event_attendants).where('attendee_status = 3').where('event_id = ?', @event.id).order('first_name ASC')
+    # @invited_users = User.joins(:event_attendants).where('attendee_status = 0').where('event_id = ?', @event.id).order('first_name ASC')
+    @invited_users = @event.users.where('attendee_status = 0').order('first_name ASC')
+    # @notgoing_users = User.joins(:event_attendants).where('attendee_status = 1').where('event_id = ?', @event.id).order('first_name ASC')
+    @notgoing_users = @event.users.where('attendee_status = 1').order('first_name ASC')
+    # @maybe_users = User.joins(:event_attendants).where('attendee_status = 2').where('event_id = ?', @event.id).order('first_name ASC')
+    @maybe_users = @event.users.where('attendee_status = 2').order('first_name ASC')
+    # @going_users = User.joins(:event_attendants).where('attendee_status = 3').where('event_id = ?', @event.id).order('first_name ASC')
+    @going_users = @event.users.where('attendee_status = 3').order('first_name ASC')
 
     @interested_user_ids = User.joins(:user_interests).where("interest_id = ?", @event.interest_id).pluck(:id)
     @invitation_sent_user_ids = EventAttendant.where("event_id = ?", @event.id).pluck(:user_id)
@@ -63,6 +66,13 @@ class EventsController < ApplicationController
 
   def update
     set_event
+
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.js { render 'update' }
+      end
+    end
 
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
@@ -89,7 +99,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :owner_user_id, :interest_id])
+      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :status, :event_type, :interest_id])
     end
 
 end
