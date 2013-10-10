@@ -20,9 +20,6 @@ class UsersController < ApplicationController
   def show
     set_user
     @favorites = @user.interests
-	if @favorites.count == 0
-		@no_favorites = "Please add at least one Interest by clicking 'favorite' link for any Interest shown below."
-	end
     e = @user.user_interests.pluck(:interest_id)
     arr = e.join(",")
     @interests = Interest.where("id not in (#{arr})").order('name ASC')
