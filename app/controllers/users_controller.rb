@@ -19,11 +19,9 @@ class UsersController < ApplicationController
   
   def show
     set_user
-
     @favorites = @user.interests
     e = @user.user_interests.pluck(:interest_id)
     arr = e.join(",")
-
     @interests = Interest.where("id not in (#{arr})").order('name ASC')
   end
 
