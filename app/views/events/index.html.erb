@@ -22,101 +22,25 @@
 	  <li><a href="#joined_events" data-toggle="tab"><h4>Events I've Joined</h4></a></li>
 	  <li><a href="#maybe_events" data-toggle="tab"><h4>Maybe Events</h4></a></li>
 	  <li><a href="#my_events" data-toggle="tab"><h4>Events I Created</h4></a></li>
-	  
 	</ul>
 
 	<div id="myTabContent" class="tab-content">
 
         <div class="tab-pane active in" id="invited_to_events">
-        	<table class="table table-striped">
-			<tr class="my_row">
-				<th>Event Name</th>
-				<th>Interest</th>
-				<th>Event Owner</th>
-				<th>Date and time</th>
-				<th>Actions</th>
-				<th></th>
-				<th></th>
-			</tr>
-			<% @invited_to_events.each do |attendant_event| %>
-				<% if attendant_event.valid?%>
-				<tr>
-					<td><%= link_to attendant_event.event.name, event_path(attendant_event.event) %></td>
-					<td><%= attendant_event.event.interest.name %></td>
-					<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
-					<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
-					<td><%= button_to 'Join', invite_path(attendant_event, :status => 3), method: :patch, class: 'btn btn-small btn-success' %> </td>
-					<td><%= button_to 'Maybe', invite_path(attendant_event, :status => 2), method: :patch, class: 'btn btn-small btn-info' %> </td>
-					<td><%= button_to 'Not this time', invite_path(attendant_event, :status => 1), method: :patch, class: 'btn btn-small btn-primary' %> </td>
-				</tr>
-				<% end %>
-			<% end %>
-			</table>
+			<%= render 'events/invited' %>
         </div>
-
-
-        <div class="tab-pane fade" id="maybe_events">
-        	<table class="table table-striped">
-			<tr class="my_row">
-				<th>Event Name</th>
-				<th>Interest</th>
-				<th>Event Owner</th>
-				<th>Date and time</th>
-			</tr>
-			<% @maybe_events.each do |attendant_event| %>
-				<tr>
-					<td><%= link_to attendant_event.event.name, event_path(attendant_event.event) %></td>
-					<td><%= attendant_event.event.interest.name %></td>
-					<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
-					<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
-				</tr>
-			<% end %>
-			</table>
-
-        </div>       
 
         <div class="tab-pane fade" id="joined_events">
-        	<table class="table table-striped">
-			<tr class="my_row">
-				<th>Event Name</th>
-				<th>Interest</th>
-				<th>Event Owner</th>
-				<th>Date and time</th>
-			</tr>
-			<% @joined_events.each do |attendant_event| %>
-				<tr>
-					<td><%= link_to attendant_event.event.name, event_path(attendant_event.event) %></td>
-					<td><%= attendant_event.event.interest.name %></td>
-					<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
-					<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
-				</tr>
-			<% end %>
-			</table>
-        	
+			<%= render 'events/joined' %>
         </div>
 
+        <div class="tab-pane fade" id="maybe_events">
+			<%= render 'events/maybe' %>
+        </div>       
 
         <div class="tab-pane fade" id="my_events">
-        	<table class="table table-striped">
-			<tr class="my_row">
-				<th>Event Name</th>
-				<th>Interest</th>
-				<th>Event Owner</th>
-				<th>Date and time</th>
-			</tr>
-			<% @my_events.each do |attendant_event| %>
-				<tr>
-					<td><%= link_to attendant_event.event.name, event_path(attendant_event.event) %></td>
-					<td><%= attendant_event.event.interest.name %></td>
-					<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
-					<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
-				</tr>
-			<% end %>
-			</table>
-
+			<%= render 'events/created' %>
         </div>
-
-
     </div>
 </div>
 

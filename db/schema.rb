@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010052524) do
+ActiveRecord::Schema.define do
 
   create_table "event_attendants", force: true do |t|
     t.integer  "user_id"
@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 20131010052524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone_number"
-    t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "invite_all"
+    t.float    "latitude"
+    t.integer  "status",       default: 1
+    t.integer  "event_type",   default: 1
   end
 
   create_table "interests", force: true do |t|
@@ -78,6 +79,6 @@ ActiveRecord::Schema.define(version: 20131010052524) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "invite_all"
   end
-
 end

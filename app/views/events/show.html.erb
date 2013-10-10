@@ -25,6 +25,7 @@
 		</div>
 	<% end %>
 </div>
+
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
@@ -33,6 +34,9 @@
 <div class="row">
 	<div class="span4">
 		<p>
+			<% if @event.start_date < Date.current() %>
+				<font size="3" color="red"><strong>This is a past event</strong></font></br>
+			<% end %>
 			<strong>Created by: </strong><%= @owner.first_name%> <%= @owner.last_name%>
 			<br>
 			<strong>Interest: </strong><%= @interest_name%>
@@ -79,7 +83,7 @@
 
 <div id="invitation_headings" class="row">
 	<div class="span3">
-		<h4>Invite Users</h4>
+		<h4>Invite Funatics</h4>
 	</div>
 	<div class="span2">
 		<h4>Going :)</h4>
@@ -103,7 +107,11 @@
 				<input type='hidden' name="invite[user_id]" value="<%= invite %>">
 				<input type='hidden' name="invite[attendee_status]" value="0">
 				<input type='hidden' name="_method" value="create">
-				<input class="btn btn-small btn-info" type="submit" value="Invite" />
+				<% if @event.start_date >= Date.current() %>
+					<input class="btn btn-small btn-info" type="submit" value="Invite" />
+				<% else %>
+					<input class="btn btn-small btn-info" type="button" value="Invite" />
+				<% end %>
 			  	<%= User.find(invite).first_name %> <%= User.find(invite).last_name %>
 			</form>
 		<% end %>
