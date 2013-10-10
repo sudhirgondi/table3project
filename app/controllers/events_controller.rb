@@ -27,6 +27,17 @@ class EventsController < ApplicationController
       @ea = @event.event_attendants.last
       @ea.owner = 1
       @ea.attendee_status = 3
+      if @event.invite_all == true
+        User.joins(:user_interests).where("interest_id = ?", @event.interest_id).pluck(:id).each do |user_id|
+          if EventAttendant.where("event_id = ?", @event.id).where("user_id = ?", user_id).empty? == true
+            a = EventAttendant.new
+            a.user_id = user_id
+            a.event_id = @event.id
+            a.attendee_status = 0
+            a.save
+          end
+        end
+      end
       @ea.save
       redirect_to event_path(@event)
     else
@@ -54,11 +65,21 @@ class EventsController < ApplicationController
     # str = @interested_user_ids.join(",")
     # @interested_uninvited = EventAttendant.includes(:user).where("user_id not in (#{str})")
     @interested_uninvited_ids = @interested_user_ids - @invitation_sent_user_ids
-
   end
 
   def edit
     set_event
+    if @event.invite_all == true
+      User.joins(:user_interests).where("interest_id = ?", @event.interest_id).pluck(:id).each do |user_id|
+        if EventAttendant.where("event_id = ?", @event.id).where("user_id = ?", user_id).empty? == true
+          a = EventAttendant.new
+          a.user_id = user_id
+          a.event_id = @event.id
+          a.attendee_status = 0
+          a.save
+        end
+      end
+    end
   end
 
   def update
@@ -89,7 +110,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :owner_user_id, :interest_id])
+      params.require(:event).permit([:name, :int_id, :description, :start_date, :end_date, :start_time, :end_time, :location, :address, :city, :state, :zip_code, :owner_user_id, :interest_id, :phone_number, :invite_all])
     end
 
 end

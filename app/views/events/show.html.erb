@@ -12,8 +12,19 @@
 	});
 </script>
 
-<h1><%= @event['name'] %></h1>
-
+<div class="row">
+	<div class="span8">
+		<h1><%= @event['name'] %></h1>
+	</div>
+	<% if (signed_in? == true) && (current_user.id == @owner.id)%>
+		<div class="span2">
+			<%= button_to 'Edit event', edit_event_path(@event), method: :get, class: 'btn btn-large btn-primary' %>
+		</div>
+		<div class="span2">
+			<%= button_to 'Cancel event', edit_event_path(@event), method: :get, class: 'btn btn-large btn-danger' %>
+		</div>
+	<% end %>
+</div>
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
@@ -51,7 +62,6 @@
 			<%= @event.zip_code %></br>
 			<%= @event.phone_number %>
 			<br>
-		
 		</p>
 	</div>
 
