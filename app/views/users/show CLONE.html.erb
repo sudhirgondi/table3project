@@ -1,0 +1,31 @@
+<h1>My Interests</h1>
+
+<p class="notice"><%= flash[:notice] %></p>
+<p class="error"><%= flash[:error] %></p>
+
+from latest clone
+
+<div id="header">
+	<% @favorites.each do |interest| %>
+		<div class="interest">
+			<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
+			<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
+			<%= link_to 'remove', interest_path( :interest_id => interest.id), method: :delete, class: 'favorite_remove' %></p>
+		</div>
+	<% end %>
+	<p id='no_favorite'><%= @no_favorites %></p>
+</div>
+
+<p id="top">
+	<h1 id="interests_header"></h1>
+</p>
+
+
+<% @interests.each do |interest| %>
+	<div class="interest">
+		<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
+		<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
+		<%= link_to 'favorite', interests_path( :interest_id => interest.id), method: :post, class: 'favorite_add' %></p>
+	</div>
+<% end %>
+
