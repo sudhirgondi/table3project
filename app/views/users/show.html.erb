@@ -1,28 +1,54 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.remlink_hide, .addlink_hide').hide();
+		if (0!=$('.remlink_show').length) $("#no_favorite").hide();
+		$('.remlink_hide, .remlink_show').click(function(){
+			moveMe=$(this).attr("id").substring(8); // DIV NAME IS INTEREST ID, LINK NAME IS SAME WITH ".remlink" PREFIX TO KEEP IT UNIQUE
+			// $("#"+moveMe).appendTo("#bottom_append");
+			$("#"+moveMe).prependTo("#bottom_append");
+			$("#"+moveMe+" .addlink_hide").attr("class","addlink_show");
+			$("#"+moveMe+" .remlink_show").attr("class","remlink_hide");
+			$('.addlink_show').show();
+			$('.remlink_hide').hide();
+			if (0==$('.remlink_show').length) $("#no_favorite").show();
+		});
+		$('.addlink_hide, .addlink_show').click(function(){
+			$("#no_favorite").hide();  // IN CASE THIS IS 1ST INTEREST ADDED TO TOP BOX
+			moveMe=$(this).attr("id").substring(8); // DIV NAME IS INTEREST ID, LINK NAME IS SAME WITH ".addlink" PREFIX TO KEEP IT UNIQUE
+			$("#"+moveMe).prependTo("#top_append");
+			$("#"+moveMe+" .remlink_hide").attr("class","remlink_show");
+			$("#"+moveMe+" .addlink_show").attr("class","addlink_hide");
+			$('.remlink_show').show();
+			$('.addlink_hide').hide();
+		});
+	});
+</script>
+
 <h1>My Interests</h1>
 
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
 <div id="header">
-	<% @favorites.each do |interest| %>
-		<div class="interest">
-			<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
-			<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-			<%= link_to 'remove', interest_path( :interest_id => interest.id), method: :delete, class: 'favorite_remove' %></p>
-		</div>
-	<% end %>
+	<div id="top_append">
+		<% @favorites.each do |interest| %>
+			<div id="<%= interest.id %>" class="interest">
+				<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
+				<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
+				<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_hide", remote: true %>
+				<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_show", remote: true %></p>
+			</div>
+		<% end %>
+	</div>
+	<p id='no_favorite'>Please add at least one Interest by clicking 'favorite' link for any Interest shown below.</p>
 </div>
 
-<p id="top">
-	<h1 id="interests_header"></h1>
-</p>
-
-
+<div id="bottom_append"></div>
 <% @interests.each do |interest| %>
-	<div class="interest">
+	<div id="<%= interest.id %>" class="interest">
 		<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
 		<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-		<%= link_to 'favorite', interests_path( :interest_id => interest.id), method: :post, class: 'favorite_add' %></p>
+		<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_show", remote: true %>
+		<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_hide", remote: true %></p>
 	</div>
 <% end %>
-
