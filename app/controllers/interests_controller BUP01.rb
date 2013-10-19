@@ -54,15 +54,10 @@ class InterestsController < ApplicationController
   end
 
   def destroy
-  	User.find(current_user.id).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-	respond_to do | format |
-		format.html { redirect_to :back }
-		format.js
-	end
 	# User.find(session[:user_id]).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-	# User.find(session[:user_id]).user_interests.where("interest_id=#{params[:interest_id]}").first.delete
+	User.find(session[:user_id]).user_interests.where("interest_id=#{params[:interest_id]}").first.delete
     # User.find(current_user.id).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-    # redirect_to :back
+    redirect_to :back
   end
 
   private

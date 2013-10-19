@@ -1,11 +1,18 @@
 class User < ActiveRecord::Base
   attr_accessor :password
-
+validates  :address,:city,:state,:zip_code, presence:true
   has_many :user_interests
   has_many :interests, through: :user_interests
   has_many :posts
   has_many :events, through: :event_attendants
   has_many :event_attendants
+
+  geocoded_by :location
+  after_validation :geocode
+
+  def location
+    [address,city,state,zip_code].compact.join(',')
+  end
 
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 

@@ -4,7 +4,7 @@ gem 'hirb'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
-#gem 'rails-footnotes', :group => :development
+gem 'rails-footnotes', :group => :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
