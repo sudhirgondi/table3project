@@ -1,10 +1,10 @@
-<div class="modal hide fade in" id="user-edit">
+<div class="modal hide fade out" id="user-edit">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">x</button>
     <h2>Edit Event</h2>
   </div>
 
-  <%= simple_form_for(@event), :html => {:method => :patch}) do |f| %>
+  <%= simple_form_for(@event, :remote => true) do |f| %>
     <div class="modal-body">
 
       <p class="notice"><%= flash[:notice] %></p>
@@ -22,11 +22,11 @@
         <%= f.input :start_time, :as => :time, :ampm => true, :minute_step => 5, :start_hour => 0, :end_hour => 23, :selected => 8 %>
         <%= f.input :end_time, :as => :time, :ampm => true, :minute_step => 5, :start_hour => 0, :end_hour => 23, :selected => 8  %>
         <%= f.input :description, :as => :text, label: "Event Description (required): ", :input_html => { class: 'input-large', :rows => 6 }, :required => true %>
-      <% end %>
     </div>
 
     <div class="modal-footer">
-      <%= f.button "Update", :class => "btn btn-primary", :data => { :dismiss => "modal"} %>
+      <%= f.button :submit, :class => 'btn btn-large btn-success' %>
+
       <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
   <% end %>

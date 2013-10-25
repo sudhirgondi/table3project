@@ -27,13 +27,13 @@
 				<td><%= attendant_event.event.interest.name %></td>
 				<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
 				<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
-				<td><%= button_to 'Edit', edit_event_path(attendant_event.event.id), :remote => true, method: :get, class: 'btn btn-small btn-primary' %> </td>
-				<td><%= button_to 'Cancel', event_path(attendant_event.event, :status => 2, :format => :js), :remote => true, method: :patch, class: 'btn btn-small btn-warning' %> </td>
+				<td><%= button_to 'Edit', edit_event_path(attendant_event.event, :format => :js), :remote => true, method: :get, class: 'btn btn-small btn-primary' %> </td>
+				<td><%= button_to 'Cancel', event_path(attendant_event.event, :cancel_event => 1, :status => 2, :format => :js), :confirm => 'Are you sure?', :remote => true, method: :patch, class: 'btn btn-small btn-warning' %> </td>
 			</tr>
 		<% end %>
 		<% end %>
 		</table>
-      </div>
+      </div>	
     </div>
   </div>
   <div class="panel panel-default">
@@ -53,6 +53,8 @@
 			<th>Interest</th>
 			<th>Event Owner</th>
 			<th>Date and time</th>
+			<th>Actions</th>
+			<th></th>
 		</tr>
 		<% @my_events.each do |attendant_event| %>
 		<% if (attendant_event.event.start_date >= Date.current()+7)%>
@@ -62,6 +64,8 @@
 				<td><%= attendant_event.event.interest.name %></td>
 				<td><%=attendant_event.event.users.where('owner = 1').pluck(:first_name, :last_name).join(" ")%></td>
 				<td><%= attendant_event.event.start_date.strftime('%a %b %d, %Y') %> <%= attendant_event.event.start_time.strftime('%H:%M %p') %></td>
+				<td><%= button_to 'Edit', edit_event_path(attendant_event.event, :format => :js), :remote => true, method: :get, class: 'btn btn-small btn-primary' %> </td>
+				<td><%= button_to 'Cancel', event_path(attendant_event.event, :cancel_event => 1, :status => 2, :format => :js), :confirm => 'Are you sure?', :remote => true, method: :patch, class: 'btn btn-small btn-warning' %> </td>
 			</tr>
 		<% end %>
 		<% end %>
@@ -104,6 +108,6 @@
   </div>
 </div>
 
-<div id="main">
+<div id="main" style="display:none">
 	
 </div>

@@ -1,12 +1,16 @@
 Table3project::Application.routes.draw do
 
   
+  get "favorites/new"
+  get "favorites/create"
+  get "favorites/destroy"
   resources :events do
     resources :posts
   end
   resources :invites
   resources :interests
   resources :users
+  resources :favorites, :only => [:new, :create, :destroy]
   resources :sessions,  :only => [:new, :create, :destroy]
 
   get "/about" ,    :to => 'about#index'
