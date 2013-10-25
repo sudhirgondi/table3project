@@ -8,6 +8,12 @@
 	border-radius:15px;
 }
 
+#search_label {
+	display: inline;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 .interest {
 	float: left;
 	text-align: center;
@@ -31,16 +37,10 @@
 		margin: 4px;
 		padding: 0px;
 	}
-
-/*
-	.addlink_hide, .addlink_show, .remlink_hide, .remlink_show {
-		margin-left: 4px;
-		font-size: 16px;
-	}
-*/
 	
 	#no_favorite {
 		color: gray;
+		text-align: center;
 		font-size: 26px;
 		margin: 50px 0px 0px 10px;
 	}

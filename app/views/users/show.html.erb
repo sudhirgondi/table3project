@@ -1,30 +1,21 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.remlink_hide, .addlink_hide').hide();
-		if (0!=$('.remlink_show').length) $("#no_favorite").hide();
-		$('.remlink_hide, .remlink_show').click(function(){
-			moveMe=$(this).attr("id").substring(8); // DIV NAME IS INTEREST ID, LINK NAME IS SAME WITH ".remlink" PREFIX TO KEEP IT UNIQUE
-			// $("#"+moveMe).appendTo("#bottom_append");
-			$("#"+moveMe).prependTo("#bottom_append");
-			$("#"+moveMe+" .addlink_hide").attr("class","addlink_show");
-			$("#"+moveMe+" .remlink_show").attr("class","remlink_hide");
-			$('.addlink_show').show();
-			$('.remlink_hide').hide();
-			if (0==$('.remlink_show').length) $("#no_favorite").show();
-		});
-		$('.addlink_hide, .addlink_show').click(function(){
-			$("#no_favorite").hide();  // IN CASE THIS IS 1ST INTEREST ADDED TO TOP BOX
-			moveMe=$(this).attr("id").substring(8); // DIV NAME IS INTEREST ID, LINK NAME IS SAME WITH ".addlink" PREFIX TO KEEP IT UNIQUE
-			$("#"+moveMe).prependTo("#top_append");
-			$("#"+moveMe+" .remlink_hide").attr("class","remlink_show");
-			$("#"+moveMe+" .addlink_show").attr("class","addlink_hide");
-			$('.remlink_show').show();
-			$('.addlink_hide').hide();
-		});
-	});
-</script>
+<%= javascript_include_tag "users_show" %>
 
-<h1>My Interests</h1>
+<div id="results"></div>
+
+<div class="row">
+	<div class="span4">
+		<h1>My Interests</h1>
+	</div>
+	<div class="span5">
+		<%= form_tag user_path, id: 'myForm', :method => 'get' do %>
+		<%= text_field_tag :search, params[:search], id: 'interest_search' %>
+		<label id="search_label" for="interest_search">Search Interests</label>
+		<% end %>
+	</div>
+	<div class="span2">
+		<%= button_to 'Create an interest', new_interest_path(), method: :get, class: 'btn btn-large btn-success' %>
+	</div>
+</div>
 
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
@@ -33,22 +24,31 @@
 	<div id="top_append">
 		<% @favorites.each do |interest| %>
 			<div id="<%= interest.id %>" class="interest">
-				<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
-				<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-				<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_hide", remote: true %>
-				<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_show", remote: true %></p>
+				<div id="<%= interest.name %>" class="search_donthide">
+					<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
+					<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
+					<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_hide", remote: true %>
+					<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_show", remote: true %></p>
+				</div>
 			</div>
 		<% end %>
 	</div>
-	<p id='no_favorite'>Please add at least one Interest by clicking 'favorite' link for any Interest shown below.</p>
+	<div id='no_favorite'>
+		<p>Please add at least one Interest by clicking 'favorite' link for any Interest shown below.</p>
+		<p>INTERESTS ARE HOW YOU GET INVITED TO EVENTS!</p>
+	</div>
 </div>
 
 <div id="bottom_append"></div>
 <% @interests.each do |interest| %>
+
 	<div id="<%= interest.id %>" class="interest">
-		<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
-		<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-		<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_show", remote: true %>
-		<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_hide", remote: true %></p>
+		<div id="<%= interest.name %>" class="search_hide">
+			<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
+			<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
+			<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_show", remote: true %>
+			<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_hide", remote: true %></p>
+		</div>
 	</div>
+
 <% end %>
