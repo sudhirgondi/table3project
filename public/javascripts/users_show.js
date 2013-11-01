@@ -1,16 +1,15 @@
 $(document).ready(function(){
-	// $('#interest_search').attr("value","gam");
-	$('.remlink_hide, .addlink_hide').hide();
+	$('.remlink_hide, .addlink_hide, #no_interest').hide();
 	if (0!=$('.remlink_show').length) $("#no_favorite").hide();
 	$('.remlink_hide, .remlink_show').click(function(){
 		moveMe=$(this).attr("id").substring(8); // DIV NAME IS INTEREST ID, LINK NAME IS SAME WITH ".remlink" PREFIX TO KEEP IT UNIQUE
-		// $("#"+moveMe).appendTo("#bottom_append");
 		$("#"+moveMe).prependTo("#bottom_append");
 		$("#"+moveMe+" .addlink_hide").attr("class","addlink_show");
 		$("#"+moveMe+" .remlink_show").attr("class","remlink_hide");
 		$("#"+moveMe+" .search_donthide").attr("class","search_hide");
 		$('.addlink_show').show();
 		$('.remlink_hide').hide();
+		$('#no_interest').hide();
 		if (0==$('.remlink_show').length) $("#no_favorite").show();
 	});
 	$('.addlink_hide, .addlink_show').click(function(){
@@ -24,11 +23,18 @@ $(document).ready(function(){
 		$('.addlink_hide').hide();
 	});
 	$('#interest_search').keyup(function(){
+		foundOne=false;
 		searchStr=$(this).val().toUpperCase();
 		$('.search_hide').each(function(){
 			interestName=$(this).attr("id").toUpperCase();
-			if(-1==interestName.indexOf(searchStr)) $(this).hide();
-			else $(this).show();
+			if (-1==interestName.indexOf(searchStr)) $(this).hide();
+			else 
+			{
+				$(this).show();
+				foundOne=true;
+			}
+			if (foundOne) $('#no_interest').hide();
+			else $('#no_interest').show();
 		});
 	});
 });

@@ -8,16 +8,18 @@ class InterestsController < ApplicationController
   end
 
   def create
-    # @interest = Interest.new(interest_params)
-    # if @interest.save 
-    #   redirect_to interest_path(@interest)
-    # else
-    #   render action: 'new'
-    # end
+    @interest = User.find(current_user.id).interests.create(interest_params)
+    if @interest.valid?
+      @ea = @interest.user_interests.last
 
-    interest_info = Interest.find(params[:interest_id])
-    interest = User.find(session[:user_id]).interests.push(interest_info)
-    redirect_to :back
+      # @ea.creator = 1
+      # @ea.attendee_status = 3
+      @ea.save
+      redirect_to user_path(current_user.id)
+    else
+      render action: 'new'
+    end
+  
   end
 
   def show
@@ -54,15 +56,6 @@ class InterestsController < ApplicationController
   end
 
   def destroy
-  	User.find(current_user.id).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-	respond_to do | format |
-		format.html { redirect_to :back }
-		format.js
-	end
-	# User.find(session[:user_id]).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-	# User.find(session[:user_id]).user_interests.where("interest_id=#{params[:interest_id]}").first.delete
-    # User.find(current_user.id).user_interests.where("interest_id=#{params[:interest_id]}").first.destroy
-    # redirect_to :back
   end
 
   private

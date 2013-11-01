@@ -27,8 +27,8 @@
 				<div id="<%= interest.name %>" class="search_donthide">
 					<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
 					<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-					<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_hide", remote: true %>
-					<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_show", remote: true %></p>
+					<%= link_to "favorite", favorites_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_hide", remote: true %>
+					<%= link_to "remove", favorite_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_show", remote: true %></p>
 				</div>
 			</div>
 		<% end %>
@@ -41,14 +41,16 @@
 
 <div id="bottom_append"></div>
 <% @interests.each do |interest| %>
-
-	<div id="<%= interest.id %>" class="interest">
-		<div id="<%= interest.name %>" class="search_hide">
+	<div id="<%= interest.name %>" class="search_hide">
+		<div id="<%= interest.id %>" class="interest">
 			<%= link_to(image_tag("#{interest.id}.jpg", class: 'circle'), interest_path(interest.id)) %>
 			<p><%= link_to interest.name, interest_path(interest.id), class: 'interest_title' %>
-			<%= link_to "favorite", interests_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_show", remote: true %>
-			<%= link_to "remove", interest_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_hide", remote: true %></p>
+			<%= link_to "favorite", favorites_path( :interest_id => interest.id), method: :post, id: "addlink.#{interest.id}", class: "addlink_show", remote: true %>
+			<%= link_to "remove", favorite_path( :interest_id => interest.id), method: :delete, id: "remlink.#{interest.id}", class: "remlink_hide", remote: true %></p>
 		</div>
 	</div>
-
 <% end %>
+
+<div id='no_interest'>
+	<p>No interests match the search criteria you have specified.</p>
+</div>
