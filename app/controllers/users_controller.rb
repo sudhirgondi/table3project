@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   
   def show
     set_user
+	# following 'if' plugs security hole that allowed display of all user emails, etc....
+	if (defined?(current_user.id)).nil?
+	  redirect_to root_path
+	end
     @favorites = @user.interests
     e = @user.user_interests.pluck(:interest_id)
     arr = e.join(",")

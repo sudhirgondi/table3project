@@ -7,13 +7,10 @@
 		<h1>My Interests</h1>
 	</div>
 	<div class="span5">
-		<%= form_tag user_path, id: 'myForm', :method => 'get' do %>
 		<%= text_field_tag :search, params[:search], id: 'interest_search' %>
 		<label id="search_label" for="interest_search">Search Interests</label>
-		<% end %>
 	</div>
 	<div class="span2">
-		<%= button_to 'Create an interest', new_interest_path(), method: :get, class: 'btn btn-large btn-success' %>
 	</div>
 </div>
 
@@ -52,5 +49,6 @@
 <% end %>
 
 <div id='no_interest'>
-	<p>No interests match the search criteria you have specified.</p>
+	<p>No interests match the search criteria you have specified.</p><br />
+	<%= button_to 'Create an interest', new_interest_path(), method: :get, class: 'btn btn-large btn-success' %>
 </div>
