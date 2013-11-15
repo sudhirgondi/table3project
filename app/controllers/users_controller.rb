@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    # @users = User.all <-- this was a security hole that displayed all user emails, etc.
+    redirect_to root_path
   end
 
   def new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   
   def show
     set_user
-	# following 'if' plugs security hole that allowed display of all user emails, etc....
+	# user must be logged in to go to favorites page (users/show view)....
 	if (defined?(current_user.id)).nil?
 	  redirect_to root_path
 	end
