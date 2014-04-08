@@ -20,6 +20,25 @@
 <p class="notice"><%= flash[:notice] %></p>
 <p class="error"><%= flash[:error] %></p>
 
+<h2>Current Events within 1000 mile radius</h2>	
+<% for events in Event.near([@user.latitude, @user.longitude], 1000) %>
+
+
+
+<div class="dropdown">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Search Events
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li><%= link_to events.name,event_path(events) %></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">5 miles</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10 miles</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">20 miles</a></li>
+  </ul>
+</div>
+<% end %>
+
 <div id="header">
 	<div id="top_append">
 		<% @favorites.each do |interest| %>
